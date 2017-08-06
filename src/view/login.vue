@@ -67,6 +67,7 @@
 <script>
 	import Home from '@/view/home'
 	import Hello from '@/view/home_content/hello'
+	import store from './../store';
 	export default{
 		// mounted:function(){
 		// 	this.$http.get('../../static/login.json').then(function(response){
@@ -81,9 +82,9 @@
 					callback(new Error("请输入用户名"));
 				}
 				else{
-					if(value != "1111"){
+					if(value != "1111" && value != "vuex"){
 						callback(new Error("用户名不存在"));
-					}
+					}		
 					else{
 						callback();
 					}
@@ -120,11 +121,12 @@
 	    	    }
     		};
 			return{
-				loginForm:{
-					userName:'',
-					password:'',
-					psw:''
-				},
+				loginForm:store.state.userInfo,
+				// loginForm:{
+				// 	userName:'',
+				// 	password:'',
+					// psw:''
+				// },
 				// username:[],
 				loginRules:{
 					userName:[
@@ -148,6 +150,9 @@
 		        	}
 		      	});
 			}	
-		}
+		},
+		mounted:function(){
+	  	console.log("stor内容" ,store.state.userInfo);
+	  }
 	}
 </script>

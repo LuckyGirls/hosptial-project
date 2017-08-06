@@ -53,28 +53,28 @@
 						</span>
 					</div>
 				</div>
-				<div class="personal-info">
+				<div class="personal-info special">
 					<div class="title">
 						<span>账号信息</span>
 					</div>
 					<div class="title-content">
 						<span class="left">
 							<span>登录账号：</span>
-							<span class="change-text">{{ personal.name }}</span>
+							<span class="change-text">{{ loginForm.userName }}</span>
 						</span>	
 					</div>
 					<div class="title-content">
 						<span class="left">
 							<span>关联邮箱：</span>
-							<span class="change-text">{{ personal.age }}</span>
+							<span class="change-text">{{ personal.email }}</span>
 						</span>
-						<el-button type="text" class="editor" @click="dialogTableVisible = true">
+						<el-button type="text" class="editor editor1" @click="dialogTableVisible = true">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							编辑
 						</el-button>
 					</div>	
 				</div>
-				<div class="personal-info">
+				<div class="personal-info special">
 					<div class="title">
 						<span>医生信息</span>
 						<el-button type="text" class="editor" @click="dialogTableVisible = true">
@@ -85,13 +85,13 @@
 					<div class="title-content">
 						<span class="left">
 							<span>挂号类型：</span>
-							<span class="change-text">{{ personal.name }}</span>
+							<span class="change-text">{{ personal.ptype }}</span>
 						</span>
 					</div>
 					<div class="title-content">
 						<span class="left">
 							<span>出诊科室：</span>
-							<span class="change-text">{{ personal.subordinate }}</span>
+							<span class="change-text">{{ personal.visitSubordinate }}</span>
 						</span>
 					</div>
 					<div class="title-content">
@@ -130,12 +130,17 @@
 	.personal .content-left{
 		width: 350px;
 		height: 100%;
-		text-align: center;
+		position: relative;
+		top: -400px;
+		left: 130px;
 	}
 	.personal .content-left img{
 		width: 70px;
 		height: 70px;
 		vertical-align: middle;  
+	}
+	.personal .content-left p{
+		padding-left: 14px;
 	}
 	.personal .content-right{
 		color: #AEAEAE;
@@ -144,13 +149,16 @@
 		border: 1px solid #f1f1f1;
 		border-radius: 10px;
 		background: #fff;
-		width: 750px;
+		width: 700px;
 		height: 100%;
+	}
+	.personal .content-right .special{
+		margin-top: 15px;
 	}
 	.personal .content-right .personal-info .title{
 		color: #666;
 		font-size: 18px;
-		line-height: 50px;
+		line-height: 40px;
 		border-bottom: 1px solid #f1f1f1;
 	}
 	.personal .content-right .personal-info .title span{
@@ -165,7 +173,7 @@
 		font-size: 18px;
 	}
 	.personal .content-right .title-content{
-		line-height: 50px;
+		line-height: 40px;
 		border:0.5px solid #f1f1f1; 
 	}
 	.personal .content-right .title-content .left{
@@ -178,8 +186,13 @@
 	.personal .content-right .change-text{
 		color: #666;
 	}
+	.personal .editor1{
+		font-size: 18px;
+		margin-left: 295px;
+	}
 </style>
 <script>
+	import store from '../../store';
 	export default { 
 		data() {
 			return{
@@ -189,9 +202,12 @@
 					age:'46',
 					subordinate:'内科',
 					job:'-',
-					phone:'-'
-				}
-				
+					phone:'-',
+					email:'-',
+					ptype:'普通门诊', //挂号类型
+					visitSubordinate:'内科,儿内科'
+				},
+				loginForm:store.state.userInfo
 			}
 		}
 	}
