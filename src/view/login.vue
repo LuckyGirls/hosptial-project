@@ -68,8 +68,15 @@
 	import Home from '@/view/home'
 	import Hello from '@/view/home_content/hello'
 	export default{
+		// mounted:function(){
+		// 	this.$http.get('../../static/login.json').then(function(response){
+		// 		this.username=response.data;
+		// 		console.log("数组",this.username);
+		// 	});
+		// },
 		data(){
 			var validateUserName=(rule, value, callback) =>{
+				console.log("aaaa");
 				if(!value){
 					callback(new Error("请输入用户名"));
 				}
@@ -81,18 +88,17 @@
 						callback();
 					}
 					// this.$http.get('../../static/login.json').then(function(response){
-
-					// 	var flag=0;
-					// 	for(let i=0;i<response.data.length;i++){
-					// 		if(value === response.data[i].username){
-					// 			flag=1;
-					// 			this.loginForm.psw=response.data[i].password;
-					// 			break;
-					// 		}
-					// 	}
-					// 	if(flag !=1){
-					// 		callback(new Error("用户名不存在"));
-					// 	}
+						// var flag=0;
+						// for(let i=0;i<this.username.length;i++){
+						// 	if(value === this.username[i].username){
+						// 		flag=1;
+						// 		this.loginForm.psw=this.username[i].password;
+						// 		break;
+						// 	}
+						// }
+						// if(flag !=1){
+						// 	callback(new Error("用户名不存在"));
+						// }
 					// });
 				}
 				
@@ -119,6 +125,7 @@
 					password:'',
 					psw:''
 				},
+				// username:[],
 				loginRules:{
 					userName:[
 						{validator: validateUserName, trigger: 'blur' }

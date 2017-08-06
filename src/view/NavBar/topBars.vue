@@ -15,7 +15,9 @@
 					   	 	刘医生
 					    </span>
 					    <el-dropdown-menu slot="dropdown">
-						    <el-dropdown-item>个人信息</el-dropdown-item>
+						    <el-dropdown-item>
+						    	<router-link to='/home/personal' >个人信息</router-link>
+						    </el-dropdown-item>
 						    <el-dropdown-item>修改密码</el-dropdown-item> 
 					  	</el-dropdown-menu>
 					</el-dropdown>

@@ -3,26 +3,37 @@ import Router from 'vue-router'
 import Resource from 'vue-resource'
 import Validator from 'vue-validator'
 
+// 首页导航条
 import Home from '@/view/home'
+// 注册
 import Register from '@/view/register'
+// 登录
 import Login from '@/view/login'
+// 首页内容
 import Hello from '@/view/home_content/hello'
+// 个人信息
+import Personal from '@/view/information/personal'
 
+// 项目模块
 import project from '@/view/project/project'
 import smallproject from '@/view/project/smallproject'
 import Package from '@/view/project/package'
 import registration from '@/view/project/registration'
+// 会员模块
 import members from '@/view/members/member'
 import account from '@/view/members/account'
 import integral from '@/view/members/integral'
 import mem_package from '@/view/members/mem_package'
 import style from '@/view/members/style'
 
+// 问诊模块
 import Inquiry from '@/view/inquiry/inquiry'
 
+// 排班模块
 import Arrange from '@/view/arrange/arrange';
 import AddWork from '@/view/arrange/new_add_work';
 
+// 预约模块
 import Reservation from '@/view/reservation/reservation'
 import Mrliu from '@/view/reservation/Mrliu'
 import Vdetails from '@/view/reservation/Vdetails'
@@ -39,6 +50,7 @@ export default new Router({
     { path: '/register',component: Register},
     { path: '/home',component: Home,
         children:[
+            {path:'personal',component: Personal },
             {path:'hello',component: Hello },
             {path:'Inquiry',component: Inquiry },
             {path: 'arrange',component: Arrange,
