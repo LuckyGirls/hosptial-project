@@ -1,0 +1,192 @@
+<template>
+  <div class="mem_package" >
+  <!-- <br> -->
+  <p>当前位置：{{msg}}</p>
+  <br>
+  <el-form :inline="true" :model="formInline" class="demo-form-inline">
+    <el-form-item label="会员姓名">
+      <el-input  placeholder="请输入姓名"></el-input>
+    </el-form-item>
+    <el-form-item label="套餐名称">
+      <el-input  placeholder="请输入名称"></el-input>
+    </el-form-item>
+    <el-form-item label="剩余有效天数：小于">
+      <el-input  ></el-input>
+    </el-form-item>
+      <el-button type="success" class="el-icon-search"@click="onSubmit"></el-button>
+    </el-form-item>
+  </el-form>
+  <!-- 表格内容 -->
+  <div class="content">
+  <el-table  :data="tableData"  style="width: 100%" >
+    <el-table-column  prop="username" label="会员姓名"  width="180"></el-table-column>
+    <el-table-column  prop="accumulative_mem_package" label="累计积分"  width="180"></el-table-column>
+    <el-table-column  prop="avaliable_mem_package" label="可用积分"  width="180"></el-table-column>
+    <el-table-column label="操作">
+          <template scope="scope">
+            <el-button size="small" class="font-color" ><i class="fa fa-book" aria-hidden="true"></i>查看流水</el-button>
+              <i class="fa fa-exchange font-color" aria-hidden="true"></i>
+            <el-button size="small" class="font-color" @click="cash_register(scope.$index, scope.row)"> 兑换登记</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+  </el-table>    
+  </div>
+  <!-- 点击兑换登记出现的弹窗 -->
+  <el-dialog title="积分兑换登记" v-model="dialogFormVisible" size="tiny" >
+    <el-form ref="form" :model="form" label-width="120px">
+      <div class="left"><i class="fa fa-id-card fa-2x" aria-hidden="true"></i><span class="space">{{formInline.username}}</span></div>
+      <div  class="right">可用积分：<span class="content_size">{{formInline.accumulative_mem_package}}元</span></div>  <br><br><br>
+      <el-form-item label="兑换物品：">
+      <el-input  v-model="form.exchange_item" ></el-input>
+    </el-form-item>
+    <el-form-item label="兑换使用积分：">
+      <el-input v-model="form.use_mem_package"  ></el-input>
+    </el-form-item>
+    <el-form-item label="备注：">
+      <el-input  type="textarea" v-model="form.tip" ></el-input>
+    </el-form-item>
+    <el-form-item class="center">
+    <template scope="scope">
+      <el-button type="primary" @click="handleSave()" :loading="editLoading">确定</el-button>
+      <el-button  @click="dialogFormVisible = false">取消</el-button>
+    </template>
+    </el-form-item>
+    </el-form> 
+  </el-dialog>   
+  <!-- 分页 -->
+  <div class="block">
+     <el-pagination
+       @size-change="handleSizeChange"
+       @current-change="handleCurrentChange"
+       :current-page="currentPage1"
+       :page-sizes="[10, 20, 30, 40]"
+       :page-size="100"
+       layout="total, sizes, prev, pager, next, jumper"
+       :total="tableData.length">
+     </el-pagination>
+   </div>
+   </div>
+   </div>
+</template>
+<script >
+
+export default {
+  name: 'mem_package',
+  data () {
+    return {
+      msg: '会员>会员套餐',
+      dialogFormVisible:false,
+      editLoading:false,//是否显示修改状态
+      currentPage1: 5,
+      activeIndex: '1',
+      formInline: {
+        username:'',
+        accumulative_mem_package:'',
+        avaliable_mem_package:'',
+      },
+      form : {
+        exchange_item:'',
+        use_mem_package:'',
+        tip:'',
+      },
+      tableData: [{
+                 username:'小红',
+                 accumulative_mem_package:2356,
+                 avaliable_mem_package:562,
+               }, {
+                 username:'浩明',
+                 accumulative_mem_package:56,
+                 avaliable_mem_package:5,
+               }, {
+                 username:'偶记',
+                 accumulative_mem_package:236,
+                 avaliable_mem_package:52,
+               }, {
+                 username:'费红',
+                 accumulative_mem_package:256,
+                 avaliable_mem_package:52,
+               }]
+    }
+  },
+  methods: {
+       onSubmit() {
+         this.$message('模拟数据，这个方法并不管用哦~');
+       },
+
+       cash_register (index, row) {
+         this.dialogFormVisible = true;
+         this.formInline = Object.assign({}, row);
+         this.table_index = index;
+       },
+
+       handleSave () {
+         this.$confirm('确认提交吗？', '提示', {
+           confirmButtonText: '确定',
+           cancelButtonText: '取消',
+           cancelButtonClass: 'cancel'
+         }).then(() => {
+          this.editLoading = true;//显示正在修改，圆圈跑起来
+          this.tableData[this.table_index] = this.formInline;
+          this.tableData.splice(this.table_index, 1, this.formInline);
+          this.$message({
+             message: "操作成功！",
+             type: 'success'
+           });
+           this.editLoading = false;
+           this.dialogFormVisible = false;
+           console.log(this.form);
+         })
+      },
+      handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      },
+
+      handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      },
+      handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+      }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style >
+.mem_package{
+  padding: 20px;
+}
+
+.mem_package .content{
+ /* width: 95%;*/
+  height: 400px;
+  background: white;
+ /* margin: 0 auto;*/
+}
+.mem_package .block{
+  text-align: center;
+}
+.mem_package .center{
+  text-align: center;
+}
+.mem_package .font-color{
+  color: #50bfff; 
+   border:0px solid #50bfff;
+}
+.mem_package .left{
+  float: left; 
+  text-align: center;
+  width: 50%;
+}
+.mem_package .right{
+  float: right; 
+  text-align: center;
+  width: 50%;
+
+}
+.mem_package .center{
+  text-align: center;
+}
+
+</style>
