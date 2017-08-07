@@ -1,9 +1,9 @@
 <template>
 	<div class="top">
 		<el-row>
-			<el-button class="barsBtn">
+			<!-- <el-button class="barsBtn">
 				<i class="fa fa-bars" aria-hidden="true"></i>
-			</el-button>
+			</el-button> -->
 			<span class="font-time">今天&nbsp;{{ time.month }}&nbsp;月{{ time.day }}&nbsp;日&nbsp;&nbsp;{{ todos[time.Day] }}&nbsp;&nbsp;{{ time.hours }}:{{ time.minutes }}</span>
 			<ul class="menu2">
 				<li>
@@ -12,7 +12,7 @@
 					   	 	<i class="Img">
 					   	 		<img src="../../assets/logo.png">
 					   	 	</i>
-					   	 	刘医生
+					   	 	<span>{{per.name}}</span>
 					    </span>
 					    <el-dropdown-menu slot="dropdown">
 						    <el-dropdown-item>
@@ -82,23 +82,25 @@
 	}
 </style>
 <script>
-		var date=new Date();
-	  	export default {
-	  		data() {
-		    	return {
-		    		time:{
-		    			month:date.getMonth()+1,
-		    			day:date.getDate(),
-		    			Day:date.getDay(),
-		    			hours:date.getHours(),
-		    			minutes:date.getMinutes()
-		    		},
-		    		todos:["周日","周一","周二","周三","周四","周五","周六"]
-		    	}
-	   		}
-	  	}
-	  	// var cla=document.getElementsByClassName("barsBtn");
-	  	// cla.onclick=function(){
-	  	// 	this.toggle("aa")
-	  	// }
+	import store from '../../store';
+	var date=new Date();
+  	export default {
+  		data() {
+	    	return {
+	    		per:store.state.per,
+	    		time:{
+	    			month:date.getMonth()+1,
+	    			day:date.getDate(),
+	    			Day:date.getDay(),
+	    			hours:date.getHours(),
+	    			minutes:date.getMinutes()
+	    		},
+	    		todos:["周日","周一","周二","周三","周四","周五","周六"]
+	    	}
+   		}
+  	}
+  	// var cla=document.getElementsByClassName("barsBtn");
+  	// cla.onclick=function(){
+  	// 	this.toggle("aa")
+  	// }
 </script>

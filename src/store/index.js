@@ -8,6 +8,9 @@ const store = new Vuex.Store({
 			userInfo:{
 				userName: "",
 				password: ""
+			},
+			per:{
+				name:'刘医生'
 			}
 			
 		},
