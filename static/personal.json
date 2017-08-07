@@ -1,0 +1,15 @@
+{
+	"data":{
+		"name":"刘医生",
+		"sex":"女",
+		"age":46,
+		"subordinate":"内科",
+		"job":"-",
+		"phone":"-",
+		"email":"-",
+		"ptype":"普通门诊", 
+		"visitSubordinate":"内科",
+		"disease":"口腔扁平苔廯,慢性唇炎，失眠",
+		"introduce":"毕业于成都中医药大学。曾跟随张晓云等四川省名中医学习。"
+	}
+}

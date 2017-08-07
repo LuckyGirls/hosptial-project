@@ -87,7 +87,7 @@ export default new Router({
                   {path: '/', redirect: 'Mrliu' }
                 ]
             },
-            // {path:'Vdetails',component: Vdetails}
+            {path:'Vdetails',component: Vdetails}
         ]
 }     
   ]
