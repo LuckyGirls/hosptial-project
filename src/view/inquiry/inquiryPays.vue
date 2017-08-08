@@ -2,34 +2,30 @@
 	<div class="inOne-pay">
 		<div>
 			<el-table :data="drugDatas" border style="width: 100%">
-				<el-table-column align="center" label='选择' width="100">
+				<el-table-column align="center" label='选择' width="180">
 		      		<template scope="props">
 		        		<el-checkbox v-model="props.row.isactive"></el-checkbox>
 		    		</template>
 		  		</el-table-column>
 				
-				<el-table-column align="center" label='分类' width="200" >
+				<el-table-column align="center" label='分类' width="300" >
 		      		<template scope="props">
 		        		{{ props.row.id }}
 		    		</template>
 		  		</el-table-column>
 
-		  		<el-table-column align="center" label='价钱(元)' width="200">
+		  		<el-table-column align="center" label='价钱(元)'>
 		      		<template scope="props">
 		        		{{ props.row.costSpend }}
 		    		</template>
 		  		</el-table-column>
-
-		  		<el-table-column align="center" label ='费用明细' width="180">
-		      		<template scope="props">
-						<el-button size="small" type="primary" @click="handleDetail(props.$index, props.row)" icon="document">详情</el-button>
-		    		</template>
-		  		</el-table-column>
 			</el-table>
 		</div>
-
 		<div class="AllTotal">
-			<h2>总价：{{ total() }}</h2>
+			<h2>总价：{{ this.total() }}</h2>
+			<el-button type="primary" @click="selectAll()">全选</el-button>
+			<el-button type="primary" @click="selectNone()">取消全选</el-button>
+			<el-button type="success" @click="payData()" :disabled="this.total() == 0 ">缴费</el-button>
 		</div>
 	</div>
 </template>
@@ -61,12 +57,39 @@
 		    }
 		},
 	  	methods:{
-	  		handleDetail(index, row) {
-      			console.log(index, row);
+	  		payData() {
+      			let that = this
+        		// console.log('单个删除选择的row：',index,'-----',row);
+    			that.$confirm('确认缴费吗？', '提示', {}).then(() => {
+    				that.$message({
+	    				type: 'success',
+	    				message: '已缴费了哟'
+    				});
+    				console.log(JSON.stringify(this.total()));
+    			}).catch(() => {
+    				this.$message({
+    			    	type: 'info',
+    			    	message: '已取消缴费'
+    				}); 
+				});	
+    		},
+    		selectAll(){
+    			this.drugDatas.forEach(function(s){
+		        	// console.log(s.isactive)
+		            s.isactive = true;
+		        });
+    		},
+    		selectNone(){
+    			this.drugDatas.forEach(function(s){
+		        	// console.log(s.isactive)
+		            s.isactive = false;
+		        });
     		},
 		    total: function(){
-		        var total = 0;
+		    	var total = 0;
+		    	let that = this;
 		        this.drugDatas.forEach(function(s){
+		        	// console.log(s.isactive)
 		            if (s.isactive){
 		            	total+= s.costSpend;
 		            }
@@ -86,14 +109,11 @@
 	}
 	.AllTotal{
 		margin-top: 50px;
-		float: right;
-		margin-right: 150px;
 	}
 	.AllTotal h2{
-		height: 56px;
-		line-height: 56px;
+		float: right;
+		margin-right: 150px;
 		color: #20a0ff;
 		font-size: 20px;
-
 	}
 </style>

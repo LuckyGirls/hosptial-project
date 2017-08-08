@@ -1,18 +1,18 @@
 <template>
 	<div>
 		<div class="inOne-advice">
-		  <el-input v-model="input" placeholder="请输入内容" style="width:25%"></el-input>
+		  <el-input v-model="searchTxt" placeholder="请输入内容" style="width:25%"></el-input>
 		  <el-button type="primary" icon="search">搜索</el-button>
 		  <el-button type="primary" icon="edit" @click="handleAdd()">新增</el-button>
 		</div>
 		<!-- 列表 -->
 		<div class="inOne-table">
-		  <el-table :data="tableData" border style="width: 100%">
+		  <el-table :data="tableData" border style="width: 100%" @selection-change="handleSelectionChange">
 		    <el-table-column type="selection" width="50">
 		    </el-table-column>
 		    <el-table-column align="center" label='组号' width="100">
 		        <template scope="scope">
-		          {{ scope.row.groupIndex }}
+		          {{ scope.row.groupIndex}}
 		      </template>
 		    </el-table-column>
 		    <el-table-column align="center" label='名称(规格)' width="150">
@@ -70,7 +70,7 @@
           		<div slot="footer" class="dialog-footer">
           			<el-button type="primary" @click="handleSubmit()">确定</el-button>
             		<el-button type="primary" @click="handleReset()">重置</el-button>
-            		<el-button @click="dialogFormVisible = false">取消</el-button>
+            		<el-button @click="addCancel()">取消</el-button>
           		</div>
    		    </el-dialog>
    		</div>	
@@ -103,9 +103,9 @@
           		</div>
    		    </el-dialog>
    		</div>		
-		<div class="inOne-Bottom">
-			<el-button type="danger">批量删除</el-button>
-		</div>
+		<!-- <div class="inOne-Bottom">
+			<el-button type="danger" @click="handleDelAll()">批量删除</el-button>
+		</div> -->
     </div>
 </template>
 
@@ -164,10 +164,27 @@ export default {
 	            number: null,
 	            price: null
 	        },
-	        editIndex: null
+	        editIndex: null,
+	        multipleSelection: [],
+	        len:null,
+			searchTxt: ''
     	}
   	},
 	methods:{
+	    //获取数据列表
+    	getLists(){
+    		let that = this
+	      	Vue.http.get('../../../static/inquiryData.json').then(response  => {
+	      		console.log("请求成功了");
+	      		console.log(response);
+	      			
+	      		let formdata = response.data.adviceDatas;
+	      		console.log("这是我们需要的json数据",formdata);
+	      		that.tableData = formdata;
+	      	}, response => {
+	      		alert("请求失败了")
+	      	})
+    	},
     	//删除
     	handleDelete(index, row) {
     		let that = this
@@ -185,19 +202,11 @@ export default {
     			}); 
 			});	
     	},
-    	//获取数据列表
-    	getLists(){
-    		let that = this
-	      	Vue.http.get('../../static/inquiryData.json').then(response  => {
-	      		console.log("请求成功了");
-	      		console.log(response);
-	      			
-	      		let formdata = response.data.adviceDatas;
-	      		console.log("这是我们需要的json数据",formdata);
-	      		that.tableData = formdata;	
-	      	}, response => {
-	      		alert("请求失败了")
-	      	})
+    	//勾选的数据列表
+    	handleSelectionChange(selection){
+    		// console.log(selection)   //selection 数组 对象的集合
+    		this.multipleSelection = selection;
+    		this.len = this.multipleSelection.length;
     	},
     	//新增界面显示
     	handleAdd(){
@@ -230,6 +239,10 @@ export default {
     			}
 	    	})
     	},
+    	//新增界面里的取消按钮
+    	addCancel(){
+    		this.dialogFormVisible = false;
+    	},
     	//新增界面里的重置按钮
     	handleReset(){
     		this.$refs.addform.resetFields();
@@ -237,13 +250,9 @@ export default {
     	//编辑界面显示
     	handleEdit(index, row) {
       		this.dialogEditVisible = true;
-      		// this.editform = Object.assign({}, row);
-      		// console.log(index)
-      		this.editform = row;
+      		// this.editform = row;                  //浅度拷贝 指向同一地址
+      		this.editform = Object.assign({}, row);  //深度拷贝，两个对象对应不同的地址
       		this.editIndex = index;
-      		// console.log(this.editIndex)
-      		// console.log(row)
-      		// console.log(this.editform)
     	},
     	//编辑界面里的确定提交按钮
     	editSubmit(){
@@ -253,13 +262,12 @@ export default {
     				that.$confirm('确认提交吗？', '提示', {}).then(() => {
     					that.$message({
     						type: 'success',
-    						message: '提交成功'
+    						message: '修改成功'
     					});
-    					// that.tableData[that.editIndex] = JSON.parse( JSON.stringify(that.editform) );
-    					that.tableData[that.editIndex] = that.editform
+    					that.tableData[that.editIndex] = that.editform;
 						that.dialogEditVisible = false;
     				}).catch(() => {
-    					 // that.$refs.addform.resetFields();
+    		
 					});	
     			}
 	    	})
@@ -267,7 +275,6 @@ export default {
     	//编辑界面里的取消按钮
     	editCancel(){
     		this.dialogEditVisible = false;
-    		this.$refs.editform.resetFields();
     	}
   	},
   	mounted() {
