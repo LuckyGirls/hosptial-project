@@ -39,6 +39,7 @@ import Reservation from '@/view/reservation/reservation'
 import Mrliu from '@/view/reservation/Mrliu'
 import Vdetails from '@/view/reservation/Vdetails'
 import Visdoctor from '@/view/reservation/Visdoctor'
+import Appointreport from '@/view/reservation/appointreport'
 import LiuContent from '@/view/reservation/liuContent'
 
 Vue.use(Router)
@@ -85,9 +86,11 @@ export default new Router({
                         {path:'liuContent',component: LiuContent,name:'刘医生'},
                         {path: '/', redirect: 'Visdoctor' }
                       ]
+
                   },
                   {path:'Vdetails',component: Vdetails,name:'详情页'},
-                  {path: '/', redirect: 'Mrliu' }
+                  {path: '/', redirect: 'Mrliu' },
+                  {path: 'appointreport', component: Appointreport }
                 ]
             },
             
