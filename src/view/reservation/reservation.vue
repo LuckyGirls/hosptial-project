@@ -1,9 +1,5 @@
 <template >
 	<div class="reservation">
-       
-		<div class="h-header-top" style="height:30px" >
-			<p style="text-align: left;margin-top:10px;">当前位置:预约</p>	
-		</div>
 		<div class="h-header-bottom">
 			<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" style="background-color: #ffffff;">
 				<router-link to="/home/reservation/Mrliu">

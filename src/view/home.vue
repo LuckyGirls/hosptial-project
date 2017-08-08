@@ -36,6 +36,7 @@
 			</el-menu-item>
 		</el-menu>
 		<topBars class="topbar"></topBars>
+		<Levelbar class="breadcrumb1"></Levelbar> 
 		<router-view class="content"></router-view>	
 	</div>
 </template>
@@ -72,14 +73,20 @@
 		margin-top: 0;
 		margin-left: 200px;
 	}
-	
+	.sideBar .breadcrumb1{
+		padding: 15px;
+		margin-left: 200px;
+		font-size: 18px;
+	}
 	
 </style>
 <script>
 	import TopBars from '@/view/NavBar/topBars';
+	import Levelbar from '@/view/NavBar/Levelbar';
   	export default {
   		components:{
-  			topBars:TopBars
+  			topBars:TopBars,
+  			Levelbar,
   		}
   	}
 </script>

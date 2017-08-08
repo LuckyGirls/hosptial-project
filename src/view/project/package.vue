@@ -1,8 +1,6 @@
 <template>
   <div class="package">
   <!-- <br> -->
-  <p>当前位置：{{msg}}</p>
-  <br>
   <el-form :inline="true" :model="formInline" class="demo-form-inline"> 
     <el-form-item label="套餐分类">
       <el-select v-model="formInline.region" placeholder="请选择">

@@ -2,7 +2,6 @@
 	<div class="app">
 		<!-- 过滤栏 组件-->
 		<div>
-		    <p>当前位置：排班</p>
 		    <!-- 本周(按钮) -->	    
 	  		<div class="block">
 		  		  <button class="el-icon-arrow-left btn"></button>
@@ -75,11 +74,6 @@
 	</div>
 </template>
 <style type="text/css">
-	.app p
-	{
-	  color: #c2c2c2;
-	  font-size: 14px;
-	}
 	.app .btn
 	{
 		border-radius: 100%;

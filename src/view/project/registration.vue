@@ -1,8 +1,6 @@
 <template>
   <div class="registration" >
   <!-- <br> -->
-  <p>当前位置：{{msg}}</p>
-  <br>
  <el-button class="filter-item" type="success" @click="handleCreate()">新增挂号费</el-button> 
   <div class="content">
   <el-table  :data="tableData"  style="width: 100%" >

@@ -57,7 +57,7 @@
 					       		<span><el-button type="text"><i class="el-icon-time"></i>  签到</el-button></span>
 						  		<span><el-button type="text"><i class="el-icon-edit"></i>  测量</el-button></span>
 						  		<span>
-						  		<router-link to="/home/Vdetails">
+						  		<router-link to="/home/reservation/Vdetails">
 						  		<el-button type="text"><i class="el-icon-document"></i>  详情</el-button>
 						  		</router-link>
 						  		</span>

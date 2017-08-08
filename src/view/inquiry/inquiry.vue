@@ -1,9 +1,5 @@
 <template>
   <div class="contain">
-    <div class="in-location">
-      <h2>当前位置：<span>问诊</span></h2>
-    </div>
-
     <div class="in-nav">
       <el-row class="containRow" :gutter="20">
         <el-col :span="6">
@@ -137,12 +133,6 @@
   .contain a{
     color: blue;
     text-decoration: none;
-  }
-  .in-location h2{
-    font-weight: none;
-    font-size: 16px;
-    color:#dcdcdc;
-    padding:10px 0 0 10px;
   }
   .containRow{
     margin: 0 !important;
