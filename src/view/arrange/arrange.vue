@@ -1,39 +1,39 @@
 <template>
-	<div class="app">
+	<div class="app_first">
 		<!-- 过滤栏 组件-->
 		<div>
 		    <!-- 本周(按钮) -->	    
 	  		<div class="block">
-		  		  <button class="el-icon-arrow-left btn"></button>
-		  		  <span class="week" v-text="weekText"></span>
-		  		  <button class="el-icon-arrow-right btn"></button>
+		  		  <button class="el-icon-arrow-left btn" @click="getPrevWeek"></button>
+		  		  <span class="week" v-text="weekText" v-model="weekText"></span>
+		  		  <button class="el-icon-arrow-right btn" @click="getNextWeek"></button>
 	  		</div>
 
 	  		<!-- 日期 -->
 	  		<div class="block">
-	  		      <el-date-picker v-model="value1" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+	  		      <el-date-picker v-model="todayTime_value" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
 	  		</div>
 
 			<!-- 科室 -->
 			<div class="block block_small">
-	  		    <el-select v-model="value" placeholder="所有科室">
-		  		      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+	  		    <el-select v-model="office_value" placeholder="所有科室">
+		  		      <el-option v-for="item in office_options" :key="item.office_value" :label="item.office_label" :value="item.office_value">
 		  		      </el-option>
 	  		  	</el-select>
 	  		</div>
 	  		  
 	  	    <!-- 类型 -->
 	  	    <div class="block block_small">
-	  		    <el-select v-model="value" placeholder="所有类型">
-		  		      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+	  		    <el-select v-model="type_value" placeholder="所有类型">
+		  		      <el-option v-for="item in type_options" :key="item.type_value" :label="item.type_label" :value="item.type_value">
 		  		      </el-option>
 	  		  </el-select>
 	  		</div>
 	  		  
 	  	    <!-- 所有人 -->
 	  	    <div class="block block_small">
-	  		    <el-select v-model="value" placeholder="所有人">
-		  		      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+	  		    <el-select v-model="doctor_value" placeholder="所有人">
+		  		      <el-option v-for="item in doctor_options" :key="item.doctor_value" :label="item.doctor_label" :value="item.doctor_value">
 		  		      </el-option>
 	  		  </el-select>
 	  		</div> 	
@@ -47,10 +47,38 @@
   		<div class="table1">
   			<table border="1" cellspacing="0">
 					<tr>					
-						<td v-for = "(item,index) in weeks">
-							{{ item.value }}
+						<td v-for = "(item,index) in items" >
+							<!-- {{ weeks[index].item.week_value }} -->
+							<!-- 周几 -->
+							<span v-model="which_weekDay" v-if="(which_weekDay+index)<7">{{ dayNames[which_weekDay+index]}}</span>
+							<span v-else>{{ dayNames[which_weekDay+index-7]}}</span>	
 							<br>
-							{{ month }}-{{ day+index }}
+
+
+
+
+							<!-- 日期几月几号 -->
+							<span v-if="month===1||month===3 ||month===5 ||month===7||month===8 ||month===10||month===12">
+								<span v-if="(day+index)<=31">{{ month }}-{{ day+index }}</span>
+								<span v-else>{{ month+1 }}-{{ day+index-31 }}</span>
+							</span>
+							<span v-else-if="month===4||month===6 ||month===9 ||month===11">
+								<span v-if="(day+index)<=30">{{ month }}-{{ day+index }}</span>
+								<span v-else>{{ month+1 }}-{{ day+index-30 }}</span>
+							</span>
+							<span v-else-if="year%4===0">
+								<span v-if="(day+index)<=29">{{ month }}-{{ day+index }}</span>
+								<span v-else>{{ month+1 }}-{{ day+index-29 }}</span>
+							</span>
+							<span v-else>
+								<span v-if="(day+index)<=28">{{ month }}-{{ day+index }}</span>
+								<span v-else>{{ month+1 }}-{{ day+index-28 }}</span>
+							</span>
+
+
+
+
+
 						</td>
 					</tr>
 					<tr class="td_65px">
@@ -74,7 +102,16 @@
 	</div>
 </template>
 <style type="text/css">
-	.app .btn
+	body
+	{
+		background: #f1f1f1;
+	}
+	.app_first p
+	{
+	  color: #c2c2c2;
+	  font-size: 14px;
+	}
+	.app_first .btn
 	{
 		border-radius: 100%;
 		background: #ffffff;
@@ -86,7 +123,7 @@
 		margin-left: 16px;
 		float: left;
 	}
-	.app .week
+	.app_first .week
 	{
 		background: #ffffff;
 		color: #a1a1a3;
@@ -99,21 +136,21 @@
 		margin-left: 16px;
 		margin-top: -3px;
 	}
-	.app .block
+	.app_first .block
 	{
 		float: left;
 		margin-left: 1%;
 	}
-	.app .block1
+	.app_first .block1
 	{
 		margin-top: 6px;
 		padding-left: 20px;
 	}
-	.app .block_small
+	.app_first .block_small
 	{
 		width: 120px;
 	}
-	.app .table1
+	.app_first .table1
 	{
 		width: 941px;
 		height: 500px;
@@ -121,7 +158,7 @@
 		margin: 57px 26px;
 		background: #ffffff;
 	}
-	.app table
+	.app_first table
 	{
 		clear: left;
 		border-color:rgba(255,255,255,.5);
@@ -130,20 +167,20 @@
 		margin: 27px 48px;	
 
 	}
-	.app table
+	.app_first table
 	{
 		text-align: center;
 	}
-	.app .td_65px
+	.app_first .td_65px
 	{
 		height: 300px;
 		opacity: .7;		
 	}
-	.app .btns
+	.app_first .btns
 	{
 		margin-left:35%;		
 	}
-	.app .btn_foot
+	.app_first .btn_foot
 	{
 		margin-left: 18px;
 		border: none;
@@ -151,7 +188,7 @@
 		height: 30px;
 		background: #f4f4f4;
 	}
-	.app .btn_add
+	.app_first .btn_add
 	{
 		background: green;
 		color: #ffffff;
@@ -159,6 +196,7 @@
 </style>
 <script>
 	var myDate = new Date();
+	import Vue from 'vue'; 
   	export default {
 	    data () {
 	     	 return {
@@ -168,40 +206,72 @@
 	     	            return time.getTime() < Date.now() - 8.64e7;
 	     	            }
 	     	        },
-	     	 	value1: Date.now(),
+	     	 	todayTime_value: Date.now(),
+	     	 	year:myDate.getFullYear(),
 	     	 	month:myDate.getMonth() + 1,
 	     	 	day:myDate.getDate(),
+	     	 	
+	     	 	//获取今天是星期几(0-6 0代表星期天)
+	     	 	which_weekDay:myDate.getDay(),
+	     	 	dayNames:["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+
 	     	 	// 所有科室
-	     	 	options: [{
-	     	 	          value: '选项1',
-	     	 	          label: '小儿科'
-	     	 	        }, {
-	     	 	          value: '选项2',
-	     	 	          label: '眼睛科'
-	     	 	        }, {
-	     	 	          value: '选项3',
-	     	 	          label: '口腔科'
-	     	 	        }, {
-	     	 	          value: '选项4',
-	     	 	          label: '牙科'
-	     	 	        }, {
-	     	 	          value: '选项5',
-	     	 	          label: '妇科'
-	     	 	        }],
-	     	 	        value: '',
+	     	 	office_options: [{
+		     	 	          office_value: '选项1',
+		     	 	          office_label: '小儿科'
+		     	 	        }, {
+		     	 	          office_value: '选项2',
+		     	 	          office_label: '眼睛科'
+		     	 	        }, {
+		     	 	          office_value: '选项3',
+		     	 	          office_label: '口腔科'
+		     	 	        }, {
+		     	 	          office_value: '选项4',
+		     	 	          office_label: '牙科'
+		     	 	        }, {
+		     	 	          office_value: '选项5',
+		     	 	          office_label: '妇科'
+		     	 	        }],
+	     	 	office_value: '小儿科',
+	     	 	// 所有科室
+	     	 	type_options: [{
+		     	 	          type_value: '选项1',
+		     	 	          type_label: '普通门诊'
+		     	 	        }, {
+		     	 	          type_value: '选项2',
+		     	 	          type_label: '专家门诊'
+		     	 	        }, {
+		     	 	          type_value: '选项3',
+		     	 	          type_label: '专科门诊'
+		     	 	        }, {
+		     	 	          type_value: '选项4',
+		     	 	          type_label: '特需门诊'
+		     	 	        }, {
+		     	 	          type_value: '选项5',
+		     	 	          type_label: '夜间门诊'
+		     	 	        }],
+	     	 	type_value: '普通门诊',
+	     	 	//所有人
+	     	 	doctor_options: [{
+		     	 	          doctor_value: '选项1',
+		     	 	          doctor_label: '黄医生'
+		     	 	        }, {
+		     	 	          doctor_value: '选项2',
+		     	 	          doctor_label: '李医生'
+		     	 	        }, {
+		     	 	          doctor_value: '选项3',
+		     	 	          doctor_label: '牛医生'
+		     	 	        }, {
+		     	 	          doctor_value: '选项4',
+		     	 	          doctor_label: '张医生'
+		     	 	        }, {
+		     	 	          doctor_value: '选项5',
+		     	 	          doctor_label: '高医生'
+		     	 	        }],
+	     	 	doctor_value: '黄医生',
 	     	 	//复选框
 	     	 	checked: true,
 	     	 	// 一个星期
-	     	 	weeks:
-	     	 	[
-	     	 		{ value:"今天" ,time:this.value1},
-	     	 		{ value:"明天" ,time:this.value1},
-	     	 		{ value:"周二" ,time:this.value1},
-	     	 		{ value:"周三" ,time:this.value1},
-	     	 		{ value:"周四" ,time:this.value1},
-	     	 		{ value:"周五" ,time:this.value1},
-	     	 		{ value:"周六" ,time:this.value1}
-	     	 	],
 	     	 	//7个休息
 	     	 	items:
 	     	 	[
@@ -217,6 +287,74 @@
 
 	     	}
 	    },
-	    methods:{}
+	    
+	    methods:{
+
+	    	getPrevWeek:function(){
+	    		
+	    		this.weekText = "上周";
+	    		this.day = this.day - 7;
+	    		console.log("打印出this.day",this.day);
+
+
+	    		if(this.day <= 0)
+	    		{
+	    			this.day = this.day + 31;
+	    			this.month = this.month - 1;
+	    		}
+	    		// if(this.day === this.todayTime_value.getDay() && this.month === (this.todayTime_value.getMonth() + 1))
+	    		// {
+	    		// 	this.weekText = "本周";
+	    		// 	console.log("本周")
+	    		// }
+	    		if(this.month < 1)
+	    		{
+	    			this.month = this.month + 12;
+	    			this.year = this.year - 1;
+	    		}
+	    		if(this.month > 12)
+	    		{
+	    			this.month = this.month - 12;
+	    		}
+	    	},
+	    	getNextWeek:function(){
+	    		console.log("下周");
+	    		this.weekText="下周";
+	    		this.day=this.day+7;
+	    		if(this.day > 31)
+	    		{
+	    			this.day = this.day - 31;
+	    			this.month = this.month + 1;
+	    		}
+	    		if(this.month > 12)
+	    		{
+	    			this.month = this.month - 12;
+	    			this.year = this.year + 1;
+	    		}
+	    		
+	    		if(this.day === new Date)
+	    		{
+	    			this.weekText = "本周";
+	    		}
+
+
+
+
+					// let that = this;
+					// console.log("11111",this);
+					// Vue.http.get('../static/next_week.json').then(function(response){
+					// 	console.log(response);
+					// 	console.log(response.data);
+					// 	console.log(response.data.weekText);
+					// 	that.weekText = response.data.weekText;
+					// 	that.weeks = response.data.weeks;
+					// 	// that.data = response.data;
+					// 	// console.log(that.data);
+					// },function(response){
+					// 	alert("请求失败了");
+					// })
+				},
+			
+	    }
 	}
 </script>
