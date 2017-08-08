@@ -43,24 +43,28 @@
 		background: #fff;
 	}
 	/*三横导航按钮*/
-	.top .barsBtn{
+	/*.top .barsBtn{
 		border: 0;
 		border-radius: 0;
 		background: #f1f1f1;
 		width: 50px;
 		height: 50px;
-	}
+	}*/
 	
 	/*时间*/
 	.top .font-time{
 		margin-left: 15px;
+		display: inline-block;
+		text-align: left;
 	}
 	.top .font-time,.top .dropdown,.top .menu2 li{
 		color: #666;
 		font-size: 14px;
 	}
 	.top .menu2{
-		float: right;
+		display: inline-block;
+		margin-left: 500px;
+		text-align: right;
 		margin-top: 0px;
 		margin-bottom: 0px;
 		margin-right: 60px;

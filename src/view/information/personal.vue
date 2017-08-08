@@ -217,7 +217,7 @@
 		text-align: left;
 	}
 	.personal .content-left{
-		width: 30%;
+		width: 300px;
 		height: 100%;
 		text-align: center;
 		position: relative;
@@ -233,7 +233,7 @@
 	}
 	.personal .content-right{
 		color: #AEAEAE;
-		width: 65%;
+		width: 700px;
 	}
 	.personal .content-right .personal-info{
 		border: 1px solid #f1f1f1;
