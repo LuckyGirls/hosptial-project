@@ -29,7 +29,9 @@
 					<i class="fa fa-question-circle" aria-hidden="true"></i>帮助
 				</li>
 				<li>
-					<i class="fa fa-sign-in" aria-hidden="true"></i>退出
+					<router-link to="/">
+						<i class="fa fa-sign-in" aria-hidden="true"></i>退出
+					</router-link>
 				</li>
 			</ul>
 		</el-row>
