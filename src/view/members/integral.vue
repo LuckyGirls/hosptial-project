@@ -120,7 +120,6 @@ export default {
            cancelButtonText: '取消',
            cancelButtonClass: 'cancel'
          }).then(() => {
-
           this.editLoading = true;//显示正在修改，圆圈跑起来
           this.tableData[this.table_index] = this.formInline;
           this.tableData.splice(this.table_index, 1, this.formInline);
@@ -131,11 +130,6 @@ export default {
            this.editLoading = false;
            this.dialogFormVisible = false;
            console.log(this.form);
-           this.form={
-            exchange_item:'',
-            use_integral:'',
-            tip:'',
-           }
          })
       },
       handleSizeChange(val) {
