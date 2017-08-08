@@ -28,6 +28,7 @@ import style from '@/view/members/style'
 
 // 问诊模块
 import Inquiry from '@/view/inquiry/inquiry'
+import InquiryNone from '@/view/inquiry/inquiryNone'
 
 // 排班模块
 import Arrange from '@/view/arrange/arrange';
@@ -52,7 +53,8 @@ export default new Router({
         children:[
             {path:'personal',component: Personal ,name:'个人信息'},
             {path:'hello',component: Hello ,name:'子首页'},
-            {path:'Inquiry',component: Inquiry,name:'问诊' },
+            {path:'Inquiry',component: Inquiry,name:'问诊'},
+            {path:'Noinquiry',component: InquiryNone,name:'无问诊'},
             {path: 'arrange',component: Arrange,name:'排班',
                 children:[
                    {path:'new_add_work',component: AddWork}

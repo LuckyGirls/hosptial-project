@@ -9,7 +9,9 @@
         <el-col :span="6">
           <div class="grid-content bg-purple first-nav">
             <span>当前有1人等候</span>
-            <span><a href=""><i class="fa fa-retweet" aria-hidden="true"></i>切换就诊人</a></span>
+            <span>
+            <router-link to="/home/Noinquiry"><i class="fa fa-retweet"></i>切换就诊人</router-link>
+            </span>
           </div>
         </el-col>
 
@@ -18,7 +20,7 @@
             <!-- <span><a href=""><i class="fa fa-print" aria-hidden="true"></i>打印预览</a></span> -->
             <div class="in-btn">
               <!-- <el-button>保存</el-button> -->
-              <el-button type="primary">结束就诊</el-button>
+              <router-link to="/home/Noinquiry"><el-button type="primary">结束就诊</el-button></router-link>
             </div>
           </div>
         </el-col>
@@ -194,6 +196,13 @@
           teper:'',
           pressure:'',
           systolic:''
+        },
+        this.infodata = {
+          height:'--',
+          weight:'--',
+          teper:'--',
+          pressure:'--',
+          systolic:'--'
         }
       },
       //编辑界面里的取消按钮
@@ -223,10 +232,9 @@
   .containRow{
     margin: 0 !important;
   }
-  /*.in-nav{
-    height: 50px;
-    line-height: 50px;
-  }*/
+  .in-nav{
+    padding-top: 20px;
+  }
   .first-nav{
     /*padding: 10px;*/
     line-height: 36px;
