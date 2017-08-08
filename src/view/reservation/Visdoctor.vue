@@ -18,9 +18,9 @@
 									placeholder="选择时间范围">
 									</el-time-picker>
 							  </div>
-							  </el-col>
-								 
-						</el-row>							  									
+							  </el-col>								 
+						</el-row>	
+<!-- 						<el-button class="filter-item" type="primary" @click="handleCreate()"  icon="edit">新增报备</el-button>    -->						  									
 				</div>
 				<div class="content-right-bottom" style="padding-top: 0">
 				<template>
@@ -75,8 +75,10 @@
 </template>
  <!--  <sapn class="el-icon-time"></span> -->
 <script>
- 
+ 	
    import "../../assets/css/style1.css"
+
+
 	//npm i element-ui -S 等同于
 	//npm install element-ui --save
 	export default {
@@ -90,43 +92,30 @@
             },
             
 		    
-            tableData: [{
-		         date: '09:00~10.00',
-	             name: '李春华 ', 
-	    		 phone: '13012312311',
-	    	},
-	    		 
-            {
-	           date: '10:00~11.00',
-	            name: '傻子', 
-	    		phone: '13012312311',
-        	},         
-	        {
-		        date: '11:00~12.00',
-	            name: '李春华 ', 
-	    		phone: '13012312311',
-	        }]          
+       tableData: null
+	        
 	    }
 	  },
 	
 	  methods:{
 	  	getData:function(){
-	  		//这里可以写ajax方法
-	  		//       let me = this;
-				
+	  		// 这里可以写ajax方法
+	  		     let me = this;			
+					this.$http.get('../static/testData.json').then(function(response){
+						// alert(0)
+						console.log(response)												
+						console.log("这是我们需要的json数据",response.data)
+						this.tableData = response.data;
 
-					// Vue.http.get('testData.json').then(function(response){
-
-					// 	console.log(response)
-					// 	console.log("这是我们需要的json数据",response.data)
-					// 	// this.formData = response.data; //this.formData拿不到
-					// 	me.formData = response.data;
-
-					// }, function(response){
-					// 	alert("请求失败了")
-					// })
+					}, function(response){
+						alert("请求失败了")
+					})
 	  	}
-	  }
+	  },
+	 mounted(){
+	 			 this.getData();
+			}
+
 	}
 </script>
 

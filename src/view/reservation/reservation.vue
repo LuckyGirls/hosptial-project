@@ -5,14 +5,16 @@
 				<router-link to="/home/reservation/Mrliu">
 			        <el-menu-item index="1">今日预约</el-menu-item>
 			    </router-link>
-			    <router-link to="">
-			        <el-menu-item index="2">所有预约</el-menu-item>
-			    </router-link>
 
 
-			    <router-link to="">
-			        <el-menu-item index="3">可预约查询</el-menu-item>
+			    <router-link to="/home/reservation/appointreport">
+			        <el-menu-item index="2">预约报备</el-menu-item>
 			    </router-link>
+<!-- 			    
+			    <router-link to="">
+			        <el-menu-item index="3">所有预约</el-menu-item>
+			    </router-link> -->
+
 			</el-menu> 	
 		</div>
 		<router-view></router-view> 
