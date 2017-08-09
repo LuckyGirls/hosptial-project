@@ -11,7 +11,17 @@ const store = new Vuex.Store({
 			},
 			per:{
 				name:'刘医生'
-			}
+			},
+			weeks_content:
+	     	 	[
+					{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] }
+	     	 	]
 			
 		},
 		

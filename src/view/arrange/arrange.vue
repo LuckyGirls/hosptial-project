@@ -82,8 +82,17 @@
 						</td>
 					</tr>
 					<tr class="td_65px">
-						<td v-for="item in items">
-							{{ item.text }}
+						<!-- <td v-for="item in items">
+							{{item.text}}
+						</td> -->
+						<td v-for="(item,week_index) in items">
+							<span v-for="(item1,todo_index) in item.todos" @click="find_index(week_index,todo_index)" v-bind:class="{ add_catchUp_myClass : item1.active , findIndex_myClass : item1.findIndex_active}">
+								<br>
+								{{ item1.text }}
+								<br>
+								{{ item1.time_start }}
+								{{ item1.time_end }}
+							</span>
 						</td>
 					</tr>
 			</table>
@@ -195,6 +204,7 @@
 	}
 </style>
 <script>
+	import store from '../../store';
 	var myDate = new Date();
 	import Vue from 'vue'; 
   	export default {
@@ -273,21 +283,25 @@
 	     	 	checked: true,
 	     	 	// 一个星期
 	     	 	//7个休息
-	     	 	items:
-	     	 	[
-	     	 		{ text:"休息" },
-	     	 		{ text:"休息" },
-	     	 		{ text:"休息" },
-	     	 		{ text:"休息" },
-	     	 		{ text:"休息" },
-	     	 		{ text:"休息" },
-	     	 		{ text:"休息" }
-	     	 	]
+	     	 	items:store.state.weeks_content,
+	     	 	// [
+	     	 		// { text:"休息" },
+	     	 		// { text:"休息" },
+	     	 		// { text:"休息" },
+	     	 		// { text:"休息" },
+	     	 		// { text:"休息" },
+	     	 		// { text:"休息" },
+	     	 		// { text:"休息" }
+	     	 	// ]
 
 
 	     	}
 	    },
-	    
+	    mounted:function(){
+
+	    	// this.items=JSON.parse(window.localStorage.getItem("weeks_contentValue"));
+	    	// console.log("aaaaaaaaa",JSON.parse(window.localStorage.getItem("weeks_contentValue")));
+	    },
 	    methods:{
 
 	    	getPrevWeek:function(){

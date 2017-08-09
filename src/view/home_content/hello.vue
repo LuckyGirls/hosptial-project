@@ -1,22 +1,43 @@
 <template>
   <div class="smallhome">
       <div class="todayReservation">
-          <p>今日预约</p>
-          <el-table :data="tableData" style="width: 50%">
-              <el-table-column prop="date" label="时间"> </el-table-column>
-              <el-table-column prop="name" label="姓名" ></el-table-column>
-              <el-table-column prop="phone" label="电话"></el-table-column>
-              <el-table-column label="操作">
+          <!-- <p>今日预约</p> -->
+          <el-table :data="tableData" style="width: 100%">
+              <el-table-column prop="date" label="今日预约"> </el-table-column>
+              <el-table-column prop="name" label="" ></el-table-column>
+              <el-table-column prop="phone" label=""></el-table-column>
+              <el-table-column>
                   <template scope="scope">
                      <router-link to="/home/reservation/Vdetails">查看</router-link>
                   </template>
               </el-table-column>
           </el-table>
       </div>
+      <div class="todayArrange">
+          <p class="title">
+            <span class="arr">今日排班</span>
+            <router-link to="/home/arrange">
+              <span class="more">更多</span>
+            </router-link>
+          </p>
+          <div class="content">
+            <p v-for="item in dataArrange[0].todos" class="todayArrange-content">
+              <span v-if="item.text !== '暂无排班'">{{ item.time_start}}~{{ item.time_end}}&nbsp;&nbsp;{{ item.text}}</span>
+            </p>
+          </div>
+          
+      </div>
+
       <div class="echart">
           <p>上周看病人数统计</p>
           <div :style="{height:height,width:width}" ref="myEchart">
           </div>
+      </div>
+      <div class="news">
+        <p>
+          <span class="new">最新动态</span>
+          <span class="more">更多</span>
+        </p>
       </div>
   </div>
 </template>
@@ -24,10 +45,12 @@
     .smallhome{
       width: 100%;
       height: 100%;
-      background: #fff;
     }
     .smallhome .todayReservation{
-      margin-left: 15%;
+      margin-left:15px;
+      text-align: center;
+      float: left;
+      width: 50%;
     }
     .smallhome .todayReservation p{
       font-size: 18px;
@@ -40,24 +63,85 @@
     .smallhome .todayReservation a:hover,.smallhome .todayReservation a:active{
        color: red;
     }
+    .smallhome .todayArrange{
+      margin-left: 15px;
+      border: 1px solid #dfe6ec;
+      float: left;
+      width: 30%;
+      background: #fff;
+    }    
+    .smallhome .todayArrange .title{
+      line-height: 40px;
+      background-color: #eef1f6;
+    }
+    .smallhome .todayArrange .title .arr,
+    .smallhome .news .new{
+      font-size: 14px;
+      color:#1f2d3d;
+      padding-left: 18px;
+      padding-right: 18px;
+      font-weight: bold;
+    }
+    .smallhome .todayArrange .title .more,
+    .smallhome .news .more{
+      font-size: 14px;
+      color:#3398DB;
+      padding-right: 30px;
+      float: right;
+    }
+    .smallhome .todayArrange .content{
+      height: 117px;
+    }
+    .smallhome .todayArrange .todayArrange-content{
+      line-height: 30px;
+      padding-left: 18px;
+      padding-right: 18px;
+      font-size: 14px;
+      color:#10181f;
+      border-bottom: 1px solid #dfe6ec;
+    }
     .smallhome .echart{
-       margin-left: 18%;
+      clear: both;
+      margin-left: 15px;
+      background: #fff;
+      width: 49.9%;
+      border: 1px solid #dfe6ec;
+      position: relative;
+      top: 15px;
+      float: left;
     }
     .smallhome .echart p{
-      margin-left: -4%;
-      margin-top: 2%;
-      font-size: 18px;
-      line-height: 50px;
+      font-size: 14px;
+      font-weight: bold;
+      color:#1f2d3d;
+      width: 97.7%;
+      line-height: 40px;
+      background-color: #eef1f6;
+      padding-left: 15px;
     }
-    
+    .smallhome .news{
+      float: left;
+      margin-left: 15px;
+      margin-top: 15px;
+      background: #fff;
+      width: 30%;
+      height: 540px;
+      border: 1px solid #dfe6ec;
+    }
+    .smallhome .news p{
+      line-height: 40px;
+      background-color: #eef1f6; 
+    }
 </style>
  <script>
-    import echarts from 'echarts'
+    import echarts from 'echarts';
+    import store from '../../store';
     export default {
       data() {
         return {
           tableData:[],
-          chart: null
+          chart: null,
+          dataArrange:store.state.weeks_content
         }
       },
       mounted:function(){

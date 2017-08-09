@@ -356,7 +356,8 @@
 		background: #0172d0;
 	}
 </style>
-<script>
+<script> 
+	import store from '../../store';
     var myDate1 = new Date();
   	export default {
 	    data () {
@@ -402,16 +403,16 @@
 	     	 	//7个休息
 	     	 	active:false,
 	     	 	findIndex_active:false,
-	     	 	weeks_content:
-	     	 	[
-					{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
-	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
-	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
-	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
-	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
-	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
-	     	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] }
-	     	 	],
+	     	 	weeks_content:store.state.weeks_content,
+	    //  	 	[
+					// { todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	    //  	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	    //  	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	    //  	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	    //  	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	    //  	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] },
+	    //  	 		{ todos: [{text:"暂无排班" , time_start:"" , time_end:"" , active:false ,findIndex_active : false}] }
+	    //  	 	],
 	     	 	// 拿到删除的下标
 	     	 	todo_index:'',
 	     	 	week_index:'',
@@ -472,6 +473,12 @@
 	     	 	formLabelWidth: '80px'
 	     	}
 	    },
+	    mounted:function(){
+	    	// window.localStorage.setItem("weeks_contentValue",JSON.stringify(this.weeks_content));
+
+	    	// this.weeks_content=JSON.parse(window.localStorage.getItem("weeks_contentValue"));
+	    	// console.log("bbbbbbbb",this.weeks_content);
+	    },
 	    methods:{
 	    	add:function(){
 	    		var vm=this;
@@ -507,8 +514,13 @@
 	    				var b=this.form.startTime;
 	    				var c=this.form.endTime;
 	    				this.weeks_content[i].todos.push({ text:a,time_start:b,time_end:c,active:false,findIndex_active:false});
+	    				// window.localStorage.setItem("weeks_contentValue",JSON.stringify(this.weeks_content));
 	    			}	    			
-	    		}	    		
+	    		}
+	    		// localStorage.clear();
+	    		// this.weeks_content=JSON.parse(window.localStorage.getItem("weeks_contentValue"));
+	    		// var itemss = JSON.parse(window.localStorage.getItem("weeks_contentValue"));
+	    		// console.log("itemss的值------------",itemss);	    		
 	    	},
 	    	find_index:function(week_index,todo_index){
 	    		console.log("拿到weeks数组下标",week_index);
