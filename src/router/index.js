@@ -28,6 +28,7 @@ import style from '@/view/members/style'
 
 // 问诊模块
 import Inquiry from '@/view/inquiry/inquiry'
+import InquiryNone from '@/view/inquiry/inquiryNone'
 
 // 排班模块
 import Arrange from '@/view/arrange/arrange';
