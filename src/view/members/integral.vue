@@ -1,6 +1,6 @@
 <template>
   <div class="integral" >
-  <p>当前位置：{{msg}}</p>
+  
   <br>
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
 
@@ -75,7 +75,7 @@ export default {
   name: 'integral',
   data () {
     return {
-      msg: '会员>会员积分',
+     
       dialogFormVisible:false,
       editLoading:false,//是否显示修改状态
       currentPage1: 5,
