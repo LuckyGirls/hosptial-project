@@ -54,22 +54,19 @@
 	/*时间*/
 	.top .font-time{
 		margin-left: 15px;
-		display: inline-block;
-		text-align: left;
-		width: 500px;
+		float: left;
+		display: inline;
+		width: 30%;
 	}
 	.top .font-time,.top .dropdown,.top .menu2 li{
 		color: #666;
 		font-size: 14px;
 	}
 	.top .menu2{
-		display: inline-block;
-		width: 700px;
-		/*margin-left: 550px;*/
-		text-align: right;
-		margin-top: 0px;
-		margin-bottom: 0px;
-		margin-right: 60px;
+		display: inline;
+		text-align: center;
+		float: right;
+		width: 60%;
 	}
 	.top .menu2 li{
 		display: inline-block;

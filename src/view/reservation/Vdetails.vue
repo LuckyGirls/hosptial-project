@@ -187,13 +187,12 @@
                         <el-form :model="form">
 
                           <el-form-item label="患者:"  class="la-span">
-                              <span v-model="value1">{{form.name}} </span>
-                              <span v-model="form.value_res">
-                                {{new Date(form.value_res).getFullYear()}}-{{new Date(form.value_res).getMonth()+1}}-{{new Date(form.value_res).getDate()}} 
+                              <span v-model="form.name">{{form.name}} </span>
+                              <span v-model="form.timeDate">
+                                  {{ form.timeDate }}
                               </span>
-                              <span v-model="value1">{{form.time}} </span>
-                              <span v-model="value1">{{form.doctor}} </span>
-                              <span v-model="value1">{{form.doc_subject}} </span>
+                              <span v-model="form.time">{{form.timeTime}} </span>
+                              <span v-model="form.doctor">{{form.doctor}} </span>
                           </el-form-item>
 
                           <el-form-item label="修改预约医生：" >
@@ -211,14 +210,14 @@
                       
                           <el-form-item label="修改预约时间：" >
                               <el-date-picker
-                                v-model="form.value_res"
+                                v-model="form.timeDate"
                                 type="date"
                                 placeholder="选择日期"
                                 :picker-options="pickerOptions0">                              
                               </el-date-picker>
 
                               <el-time-select
-                                v-model="form.time"
+                                v-model="form.timeTime"
                                 :picker-options="{
                                 start: '08:30',
                                 step: '00:15',
@@ -348,7 +347,9 @@ export default {
             // this.formData= this.form(浅拷贝)
             this.formData2 = JSON.parse(JSON.stringify(this.form));
             console.log("您修改后的参数为：", JSON.stringify(this.form) );
-            this.edit_dialogFormVisible = false
+            this.edit_dialogFormVisible = false;
+            this.form.timeDate=new Date(this.form.timeDate).getFullYear()+'-'+(new Date(this.form.timeDate).getMonth()+1)+'-'+new Date(this.form.timeDate).getDate();
+            this.form.timeTime=this.form.timeTime;
         }
 
 
