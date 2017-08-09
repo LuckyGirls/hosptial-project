@@ -56,6 +56,7 @@
 		margin-left: 15px;
 		display: inline-block;
 		text-align: left;
+		width: 500px;
 	}
 	.top .font-time,.top .dropdown,.top .menu2 li{
 		color: #666;
@@ -63,7 +64,8 @@
 	}
 	.top .menu2{
 		display: inline-block;
-		margin-left: 500px;
+		width: 700px;
+		/*margin-left: 550px;*/
 		text-align: right;
 		margin-top: 0px;
 		margin-bottom: 0px;

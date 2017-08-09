@@ -21,6 +21,18 @@
   </div>
 </template>
 <style type="text/css" scoped>
+    .smallhome{
+      width: 100%;
+      height: 100%;
+      background: #fff;
+    }
+    .smallhome .todayReservation{
+      margin-left: 15%;
+    }
+    .smallhome .todayReservation p{
+      font-size: 18px;
+      line-height: 60px;
+    }
     .smallhome .todayReservation a{
         text-decoration: none;
         color: #3398DB;
@@ -28,6 +40,16 @@
     .smallhome .todayReservation a:hover,.smallhome .todayReservation a:active{
        color: red;
     }
+    .smallhome .echart{
+       margin-left: 18%;
+    }
+    .smallhome .echart p{
+      margin-left: -4%;
+      margin-top: 2%;
+      font-size: 18px;
+      line-height: 50px;
+    }
+    
 </style>
  <script>
     import echarts from 'echarts'

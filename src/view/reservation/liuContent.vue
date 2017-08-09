@@ -1,27 +1,13 @@
 <template >
 	<div class="liuContent">
 			<div class="content-right" style="height:700px;"  >
-				<div class="content-right-top" style="padding-top: 2%">	
-			            <el-row >
-							  <el-col :span="2"><div class="grid-content bg-purple" style="margin-left:2%;">
-							  	<p class="p1-name" style="padding-top: 5%;">刘医生</p>
-							  </div>
-							  </el-col>
-							  <el-col :span="2"><div class="grid-content bg-purple-light" >
-							  	  <el-radio-button >出诊</el-radio-button>
-							  </div></el-col>
-							  <el-col :span="2"><div class="grid-content bg-purple" style="margin-left: -21%;">
-							  	<el-time-picker
-									is-range
-									v-model="value3"
-									placeholder="选择时间范围">
-									</el-time-picker>
-							  </div>
-							  </el-col>
-								 
-						</el-row>
-						
-												  									
+				<div class="content-right-top"  style="margin-top:1.25%;">	
+			        <el-row style="line-height:50px;">
+						<span class="p1-name">刘医生</span>
+						<el-radio-button >出诊</el-radio-button>
+						<el-time-picker is-range v-model="value3" placeholder="选择时间范围">
+						</el-time-picker>	  							 
+					</el-row>	
 				</div>
 				<div class="content-right-bottom" style="padding-top: 2%">
 					<img src="../../assets/40.png" class="bells" style="margin-left: 40%;margin-top: 16%;" > 

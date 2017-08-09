@@ -1,8 +1,8 @@
 <template>
   <div class="Vdetails">   
 
-    <div class="content" style="height:700px;">
-        <div class="content-left" style="height:100%;float:left;width:30%;margin-left:2%">
+    <div class="content" style="margin-top:15px;text-align:left;">
+        <div class="content-left" style="height:100%;width:30%;float:left;">
             <div class="content-left-top" style="height:40%;background-color:#fff;">
                 <div class="img-1" style="padding-top:3%; padding-left: 33%;">
                 <img src="../../assets/29.png" class="bells" > 
@@ -83,37 +83,35 @@
               </table>
             </div>
         </div>
-
-        <div class="content-right" style="height:100%;float:right;width:65%;margin-left:3%;">
-            <div class="content-right-top" style="height:43%;background-color:#fff;">
-                
+        <div class="content-right" style="height:100%;width:60%;margin-left:30px;float:left;">
+            <div class="content-right-top" style="height:43%;background-color:#fff;">  
                 <table border="0" cellspacing="0" cellpadding="0" style="width:100%;text-align: left;" >
 
-                <tr style="height:50px;" v-model="formData1">
-              　<td style="font-weight: bold;">预约信息</td>            
-              　</tr>
+                  <tr style="height:50px;" v-model="formData1">
+                　   <td style="font-weight: bold;">预约信息</td>            
+                　</tr>
 
-              　<tr style="height:50px;">
-              　<td>订单日期: 
-                <span v-model="form.value_res">
-                  {{new Date(form.value_res).getFullYear()}}-{{new Date(form.value_res).getMonth()+1}}-{{new Date(form.value_res).getDate()}} 
-                </span>
-                </td>            
-              　</tr>
+                　<tr style="height:50px;">
+                　   <td>订单日期: 
+                        <span v-model="form.value_res">
+                          {{form.value_res}}
+                        </span>
+                      </td>            
+                　</tr>
 
-                <tr style="height:50px;">
-              　<td>订单生成时间: <span v-model="form.time">{{form.time}}</span></td>            
-              　</tr>
-               
-                <tr style="height:50px;">
-              　<td>预约类型: <span v-model="form.doc_subject">{{form.doc_subject}}</span></td>            
-              　</tr>
+                  <tr style="height:50px;">
+                　     <td>订单生成时间: <span v-model="form.time">{{form.time}}</span></td>            
+                　</tr>
+                 
+                  <tr style="height:50px;">
+                　     <td>预约类型: <span v-model="form.doc_subject">{{form.doc_subject}}</span></td>            
+                　</tr>
 
 
 
-                <tr style="height:50px;">
-              　<td>心率: <span v-model="formData.rate">{{form.rate}}</span><span style="margin-left: 80%;"><el-button type="text"><i class="el-icon-document"></i>  查看报备</el-button></span></td>            
-              　</tr>
+                  <tr style="height:50px;">
+                　     <td>心率: <span v-model="formData.rate">{{form.rate}}</span><span style="margin-left: 80%;"><el-button type="text"><i class="el-icon-document"></i>  查看报备</el-button></span></td>            
+                　</tr>
 
               </table>
             </div>
@@ -126,7 +124,10 @@
               　</tr>
 
               　<tr style="height:50px;">
-              　<td>就诊时间: <span v-model="form.time">{{form.time}}</span></td>            
+              　<td>就诊时间: 
+                    <span v-model="form.timereservate">{{form.timeDate}}</span>
+                    <span v-model="form.timereservate">{{form.timeTime}}</span>
+                </td>            
               　</tr>
 
                 <tr style="height:50px;">
@@ -140,32 +141,30 @@
             </div>
             <div class="content-right-bottom2" style="margin-top: 3%">
                 <span class="wrapper">
-                  <el-button type="success" @click="dialogFormVisible = true">修改就诊时间</el-button>
+                  <el-button type="success" @click="editorDialogForm">修改就诊时间</el-button>
               
                       <el-dialog title="修改预约时间" :visible.sync="dialogFormVisible">
-                        <el-form :model="form">
+                        <el-form :model="form2">
 
                           <el-form-item label="患者:"  class="la-span">
                               <span v-model="form.name">{{form.name}} </span>
-                        <!--       <span v-model="form.value_res">{{new Date(form.value_res).getFullYear()}}</span>
-                              <span v-model="form.value_res">-{{new Date(form.value_res).getMonth()+1}}</span>
- -->                          <span v-model="form.value_res">
-                                  {{new Date(form.value_res).getFullYear()}}-{{new Date(form.value_res).getMonth()+1}}-{{new Date(form.value_res).getDate()}} 
+                              <span v-model="form.timeDate">
+                                  {{ form.timeDate }}
                               </span>
-                              <span v-model="form.time">{{form.time}} </span>
+                              <span v-model="form.time">{{form.timeTime}} </span>
                               <span v-model="form.doctor">{{form.doctor}} </span>
                           </el-form-item>
                           <el-form-item label="修改预约时间：" >
 
                               <el-date-picker
-                                v-model="form.value_res"
+                                v-model="form2.timeDate"
                                 type="date"
                                 placeholder="选择日期"
                                 :picker-options="pickerOptions0">                              
                               </el-date-picker>
 
                               <el-time-select
-                                v-model="form.time"
+                                v-model="form2.timeTime"
                                 :picker-options="{
                                   start: '08:30',
                                   step: '00:15',
@@ -293,8 +292,14 @@ export default {
           temper:'',
           pressure:'',
           rate:'',
-          value_res:Date.now() ,
+          value_res:'2017-8-9',
+          timeDate:'2017-8-10',
+          timeTime:'10:00'
 
+        },
+        form2:{
+          timeDate:'',
+          timeTime:''
         },
         // formLabelWidth: '200px',
         pickerOptions0: {
@@ -302,29 +307,6 @@ export default {
             return time.getTime() < Date.now() - 8.64e7;
           }
         },
-        pickerOptions1: {
-          shortcuts: [{
-            text: '今天',
-            onClick(picker) {
-              picker.$emit('pick', new Date());
-            }
-          }, {
-            text: '昨天',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-          }, {
-            text: '一周前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', date);
-            }
-          }]
-        },
-        
         day:'',
         value1:''
         // JSON.stringify(value_res)
@@ -332,22 +314,14 @@ export default {
     }
   },
     methods:{
-      getData:function(){
-        //这里可以写ajax方法
-        //       let me = this;
-        
-
-          // Vue.http.get('testData.json').then(function(response){
-
-          //  console.log(response)
-          //  console.log("这是我们需要的json数据",response.data)
-          //  // this.formData = response.data; //this.formData拿不到
-          //  me.formData = response.data;
-
-          // }, function(response){
-          //  alert("请求失败了")
-          // })
+      editorDialogForm:function(){
+        this.dialogFormVisible = true;
+        this.form2={
+          timeDate:'',
+          timeTime:''
+        };
       },
+      
 
       handleIconClick:function(ev) {
       console.log(ev);
@@ -364,7 +338,11 @@ export default {
             // this.formData= this.form(浅拷贝)
             this.formData1 = JSON.parse(JSON.stringify(this.form));
             console.log("您修改后的参数为：", JSON.stringify(this.form) );
-            this.dialogFormVisible = false
+            this.dialogFormVisible = false;
+            this.form.value_res=new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate();
+            this.form.time=new Date().getHours()+':'+new Date().getMinutes();
+            this.form.timeDate=new Date(this.form2.timeDate).getFullYear()+'-'+(new Date(this.form2.timeDate).getMonth()+1)+'-'+new Date(this.form2.timeDate).getDate();
+            this.form.timeTime=this.form2.timeTime;
         },
          submit2:function(){
             // this.formData= this.form(浅拷贝)

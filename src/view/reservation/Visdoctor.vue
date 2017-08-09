@@ -2,53 +2,30 @@
 	<div class="Visdoctor">
 		<div class="h-content">
 			<div class="content-right"  >
-				<div class="content-right-top" style="padding-top: 0.75%">	
-			            <el-row >
-							  <el-col :span="2"><div class="grid-content bg-purple" style="margin-left:2%;">
-							  	<p class="p1-name" style="padding-top: 5%;">刘医生</p>
-							  </div>
-							  </el-col>
-							  <el-col :span="2"><div class="grid-content bg-purple-light" >
-							  	  <el-radio-button >出诊</el-radio-button>
-							  </div></el-col>
-							  <el-col :span="2"><div class="grid-content bg-purple" style="margin-left: -21%;">
-							  	<el-time-picker
-									is-range
-									v-model="value3"
-									placeholder="选择时间范围">
-									</el-time-picker>
-							  </div>
-							  </el-col>								 
+				<div class="content-right-top">	
+			            <el-row style="line-height:50px;">
+							<span class="p1-name">刘医生</span>
+							<el-radio-button >出诊</el-radio-button>
+							<el-time-picker is-range v-model="value3" placeholder="选择时间范围">
+							</el-time-picker>	  							 
 						</el-row>	
 <!-- 						<el-button class="filter-item" type="primary" @click="handleCreate()"  icon="edit">新增报备</el-button>    -->						  									
 				</div>
 				<div class="content-right-bottom" style="padding-top: 0">
 				<template>
-					  <el-table
-					    :data="tableData"
-					    border
-					    style="width: 100%;">
-					    <el-table-column
-					      label="时间"
-					      width="180">
-					      <template scope="scope">
-					        <el-icon name="time"></el-icon>
-					        <span style="margin-left: 10px">{{ scope.row.date }}</span>
-					      </template>
+					<el-table :data="tableData" border style="width: 100%;">
+					    <el-table-column label="时间" width="180">
+					     	<template scope="scope">
+					        	<el-icon name="time"></el-icon>
+					        	<span style="margin-left: 10px">{{ scope.row.date }}</span>
+					      	</template>
 					    </el-table-column>
-					    <el-table-column
-					      label="预约人"
-					      width="180">
-					      <template scope="scope">
-					       
-<!-- 					      <p>姓名: {{ scope.row.name }}</p>
-					          <p>手机号码: {{ scope.row.phone }}</p> -->
-					          <div slot="reference" class="name-wrapper">
-					           <!--  <el-tag>{{ scope.row.name }}</el-tag> -->
-					            <p>姓名: {{ scope.row.name }}</p>
-					            <p class="phone-s">手机号码: {{ scope.row.phone }}</p>
-					          </div>
-					       
+					    <el-table-column label="预约人" width="180">
+					        <template scope="scope">
+					            <div slot="reference" class="name-wrapper">
+					                <p>姓名: {{ scope.row.name }}</p>
+					           	 	<p class="phone-s">手机号码: {{ scope.row.phone }}</p>
+					          	</div>
 					      </template>
 					    </el-table-column>
 					    <el-table-column label="状态更改" style="text-aligin:left;">
@@ -73,12 +50,8 @@
 	</div>
 		
 </template>
- <!--  <sapn class="el-icon-time"></span> -->
-<script>
- 	
+<script>	
    import "../../assets/css/style1.css"
-
-
 	//npm i element-ui -S 等同于
 	//npm install element-ui --save
 	export default {
@@ -101,7 +74,7 @@
 	  	getData:function(){
 	  		// 这里可以写ajax方法
 	  		     let me = this;			
-					this.$http.get('../static/testData.json').then(function(response){
+					this.$http.get('../../../static/testData.json').then(function(response){
 						// alert(0)
 						console.log(response)												
 						console.log("这是我们需要的json数据",response.data)

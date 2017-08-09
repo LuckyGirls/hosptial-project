@@ -90,7 +90,7 @@ export default new Router({
                   },
                   {path:'Vdetails',component: Vdetails,name:'详情页'},
                   {path: '/', redirect: 'Mrliu' },
-                  {path: 'appointreport', component: Appointreport }
+                  {path: 'appointreport', component: Appointreport,name:'预约报备' }
                 ]
             },
             
