@@ -1,6 +1,6 @@
 <template>
   <div class="integral" >
-  
+ 
   <br>
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
 
@@ -104,7 +104,6 @@ export default {
     });
   },
   methods: {
-<<<<<<< HEAD
      onSubmit() {
        this.$message('模拟数据，这个方法并不管用哦~');
      },
@@ -121,39 +120,6 @@ export default {
          cancelButtonText: '取消',
          cancelButtonClass: 'cancel'
        }).then(() => {
-=======
-       onSubmit() {
-         this.$message('模拟数据，这个方法并不管用哦~');
-       },
-
-       cash_register (index, row) {
-         this.dialogFormVisible = true;
-         this.formInline = Object.assign({}, row);
-         this.table_index = index;
-       },
-
-       handleSave () {
-         this.$confirm('确认提交吗？', '提示', {
-           confirmButtonText: '确定',
-           cancelButtonText: '取消',
-           cancelButtonClass: 'cancel'
-         }).then(() => {
-          this.editLoading = true;//显示正在修改，圆圈跑起来
-          this.tableData[this.table_index] = this.formInline;
-          this.tableData.splice(this.table_index, 1, this.formInline);
-          this.$message({
-             message: "操作成功！",
-             type: 'success'
-           });
-           this.editLoading = false;
-           this.dialogFormVisible = false;
-           console.log(this.form);
-         })
-      },
-      handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-      },
->>>>>>> d82db1f0ccf49014cb2b357651af93593e113880
 
         this.editLoading = true;//显示正在修改，圆圈跑起来
         this.tableData[this.table_index] = this.formInline;
