@@ -55,6 +55,7 @@ export default new Router({
             {path:'personal',component: Personal ,name:'个人信息'},
             {path:'hello',component: Hello ,name:'子首页'},
             {path:'Inquiry',component: Inquiry,name:'问诊' },
+            {path:'Noinquiry',component: InquiryNone,name:'无问诊' },
             {path: 'arrange',component: Arrange,name:'排班',
                 children:[
                    {path:'new_add_work',component: AddWork}
