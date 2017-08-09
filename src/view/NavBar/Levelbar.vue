@@ -1,13 +1,17 @@
 <template>
   <!-- 面包屑导航 对element-ui的面包屑进行二次封装 -->
-  <el-breadcrumb class="app-levelbar" separator="/">
-    <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item">
-    
-        <router-link v-if='index==levelList.length-1' to="" >{{item.name}}</router-link>
+  <div class="levelbar">
+      <span class="text"> 当前位置：</span>
+      <el-breadcrumb class="app-levelbar" separator="/">
+        <el-breadcrumb-item v-for="(item,index)  in levelList">
+        
+            <router-link v-if='index==levelList.length-1' to="" >{{item.name}}</router-link>
 
-        <router-link v-else :to="item.path">{{item.name}}</router-link>
-    </el-breadcrumb-item>
-  </el-breadcrumb>
+            <router-link v-else :to="item.path">{{item.name}}</router-link>
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+  </div>
+  
 </template>
 
 <script>
@@ -41,7 +45,15 @@
 </script>
 
 <style rel="stylesheet/scss"  scoped>
-    .app-levelbar  .el-breadcrumb__item__inner a {
+    .levelbar .text{
+      display: inline-block;
+      margin-top: -5px;
+      font-size: 16px;
+    }
+    .levelbar .app-levelbar{
+        display: inline-block;
+    }
+    .levelbar .app-levelbar  .el-breadcrumb__item__inner a {
         text-decoration: none;
         font-size: 14px;
     }

@@ -1,3 +1,4 @@
+
 <template>
   <div class="style" >
     
@@ -250,7 +251,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style >
     .style{
       padding: 20px;
@@ -283,3 +284,5 @@ export default {
       text-align: center;
     }
 </style>
+
+

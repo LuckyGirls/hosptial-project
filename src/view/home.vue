@@ -6,9 +6,9 @@
 			        <i class="fa fa-home icon" aria-hidden="true"></i>首页 
 			    </router-link>
 			</el-menu-item>
-			<el-menu-item index="2">
+			<!-- <el-menu-item index="2">
 			    <i class="fa fa-search icon" aria-hidden="true"></i>查询
-			</el-menu-item>
+			</el-menu-item> -->
 			<el-menu-item index="3">
 				<router-link to="/home/arrange">
 			    	<i class="fa fa-calendar icon" aria-hidden="true"></i>排班
@@ -36,6 +36,7 @@
 			</el-menu-item>
 		</el-menu>
 		<topBars class="topbar"></topBars>
+		<!-- <span class="topbar"> 当前位置:</span> -->
 		<Levelbar class="breadcrumb1"></Levelbar> 
 		<router-view class="content"></router-view>	
 	</div>

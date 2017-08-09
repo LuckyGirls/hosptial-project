@@ -4,7 +4,7 @@
 			<div class="head">
 				<ul>
 					<li>
-            <router-link to="/login">
+            <router-link to="/">
 						  <i class="fa fa-user-o" aria-hidden="true"></i>返回登录
             </router-link>
 					</li>
