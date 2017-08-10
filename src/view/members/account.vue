@@ -368,7 +368,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">>
+<style type="text/css">
   .account{
     padding: 20px;
   }

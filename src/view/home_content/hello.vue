@@ -42,10 +42,7 @@
   </div>
 </template>
 <style type="text/css" scoped>
-    .smallhome{
-      width: 100%;
-      height: 100%;
-    }
+    
     .smallhome .todayReservation{
       margin-left:15px;
       text-align: center;
