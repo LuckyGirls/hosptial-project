@@ -21,7 +21,7 @@
       </el-select>
     </el-form-item>
     <el-form-item>
-      <el-button type="success" class="el-icon-search"@click="onSubmit"></el-button>
+      <el-button type="success" class="el-icon-search"@click="onSubmit_search"></el-button>
     </el-form-item>
     <el-button class="filter-item" type="primary" @click="handleCreate()"  icon="edit">添加</el-button>   
   </el-form>
