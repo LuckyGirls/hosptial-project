@@ -9,9 +9,9 @@
         <el-col :span="6">
           <div class="grid-content bg-purple first-nav">
             <span>当前有1人等候</span>
-            <span>
-            <router-link to="/home/Noinquiry"><i class="fa fa-retweet"></i><span class="color">切换就诊人</span></router-link>
-            </span>
+            
+            <router-link to="/home/Noinquiry"><span class="color"><i class="fa fa-retweet"></i>切换就诊人 </span></router-link>
+           
           </div>
         </el-col>
 
@@ -218,6 +218,9 @@
     margin: 0;
     padding: 0;
     background: #f6f6f6;
+  }
+  .contain .color{
+      color:#20a0ff;
   }
   .contain a{
     color: blue;

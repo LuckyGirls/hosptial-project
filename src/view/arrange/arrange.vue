@@ -99,7 +99,7 @@
 			<!-- 底部三个按钮 -->
 	  		<div class="btns">
 		  		<router-link to ="/home/arrange/new_add_work">
-		  			<el-button class="btn_add btn_foot">
+		  			<el-button type="success">
 		  				新增排班
 		  			</el-button>
 		  		</router-link>

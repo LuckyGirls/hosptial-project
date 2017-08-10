@@ -42,10 +42,6 @@
   </div>
 </template>
 <style type="text/css" scoped>
-<<<<<<< HEAD
-    
-=======
->>>>>>> a993f85eb39177cd4644427a976985202f8f5f7c
     .smallhome .todayReservation{
       margin-left:15px;
       text-align: center;
