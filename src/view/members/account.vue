@@ -246,7 +246,9 @@ export default {
     },
     methods: {
         onSubmit() {
-         this.$message('模拟数据，这个方法并不管用哦~');
+         this.$http.get('../../../static/style_search.json',{params:this.formInline}).then(function(response){
+        this.tableData=response.data.tableData;
+      });
         },
        //账户充值
         accountPay (index, row) {
