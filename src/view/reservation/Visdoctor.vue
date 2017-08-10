@@ -38,7 +38,7 @@
 						  		<el-button type="text"><i class="el-icon-document"></i>  详情</el-button>
 						  		</router-link>
 						  		</span>
-						  		<span><el-button type="text"><i class="el-icon-close"></i>  取消</el-button></span>
+						  		<span><el-button type="text"  @click="handleDelete(scope.$index, scope.row)"><i class="el-icon-close"></i>  取消</el-button></span>
 						  		</div>
 					      </template>
 					    </el-table-column>
@@ -84,8 +84,17 @@
 					}, function(response){
 						alert("请求失败了")
 					})
-	  	}
+	  	},
+	  	//点击取消
+	  	handleDelete (index, row) {
+	  	  this.tableData.splice(index, 1);
+	  	  this.$message({
+	  	    message: "操作成功！",
+	  	    type: 'success'
+	  	  });
+	  	},
 	  },
+
 	 mounted(){
 	 			 this.getData();
 			}
