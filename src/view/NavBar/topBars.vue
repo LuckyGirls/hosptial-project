@@ -17,7 +17,7 @@
 					    </span>
 					    <el-dropdown-menu slot="dropdown">
 						    <el-dropdown-item>
-						    	<router-link to='/home/personal' >个人信息</router-link>
+						    	<router-link to='/home/personal' style="text-decoration:none;color:#666;">个人信息</router-link>
 						    </el-dropdown-item>
 						    <el-dropdown-item>修改密码</el-dropdown-item> 
 					  	</el-dropdown-menu>
@@ -29,7 +29,7 @@
 				<li>
 					<i class="fa fa-question-circle" aria-hidden="true"></i>帮助
 				</li>
-				<li>
+				<li class="exit">
 					<router-link to="/">
 						<i class="fa fa-sign-in" aria-hidden="true"></i>退出
 					</router-link>
@@ -72,6 +72,11 @@
 		list-style: none;
 		text-align: center;
 		margin-left: 30px;
+	}
+	.top .menu2 .exit a{
+		text-decoration: none;
+		color: #666;
+		font-size: 14px; 
 	}
 	.top .menu2 li i{
 		margin-right: 10px;

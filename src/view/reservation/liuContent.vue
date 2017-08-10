@@ -4,7 +4,7 @@
 				<div class="content-right-top"  style="margin-top:1.25%;">	
 			        <el-row style="line-height:50px;">
 						<span class="p1-name">刘医生</span>
-						<el-radio-button >出诊</el-radio-button>
+						<el-radio-button>出诊</el-radio-button>
 						<el-time-picker is-range v-model="value3" placeholder="选择时间范围">
 						</el-time-picker>	  							 
 					</el-row>	
@@ -46,5 +46,5 @@ import "../../assets/css/style1.css"
 	body{
 		background-color: #F6F6F6;
 	}
-
+	
 </style>

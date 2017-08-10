@@ -94,7 +94,7 @@
   }
 </style>
 <script>
-	
+	import {api} from '../global/api';
   export default {
     data() {
     	var validateName = (rule, value, callback) => {
@@ -141,7 +141,7 @@
     	        callback(new Error('请输入用户名'));
     	  }
         else{
-          this.$http.get('../../static/login.json').then(function(response){
+          this.$http.get(api.login).then(function(response){
              var flag=0;
              for(let i=0;i<response.data.length;i++){
                if(value === response.data[i].username){
