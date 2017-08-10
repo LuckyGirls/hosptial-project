@@ -120,6 +120,7 @@
 
 <script>
 import Vue from 'vue'
+import {api} from '../../global/api'
 export default {
 	data() {
     	return {
@@ -174,7 +175,7 @@ export default {
 	    //获取数据列表
     	getLists(){
     		let that = this
-	      	Vue.http.get('../../../static/inquiryData.json').then(response  => {
+	      	Vue.http.get(api.inquiryData).then(response  => {
 	      		console.log("请求成功了");
 	      		console.log(response);
 	      			

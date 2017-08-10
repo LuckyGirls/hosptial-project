@@ -23,12 +23,13 @@
 
 <style>
   .checeksub{
-    text-align: center;
+    margin-top: 10px;
   }
 </style>
 
 <script>
   import Vue from 'vue'
+  import {api} from '../../global/api';
   export default {
     data() {
       return {
@@ -51,7 +52,7 @@
     },
     mounted() {
       let that = this
-      Vue.http.get('../../../static/inquiryData.json').then(response  => {
+      Vue.http.get(api.inquiryData).then(response  => {
         console.log("请求成功了");
         console.log(response);
           

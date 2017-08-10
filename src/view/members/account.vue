@@ -187,7 +187,7 @@
   </div>
 </template>
 <script >
-
+import {api} from '../../global/api';
 export default {
   username: 'account',
   data () {
@@ -240,7 +240,7 @@ export default {
     },
     //实例化就获取数据
     mounted:function(){
-      this.$http.get('../../../static/style.json').then(function(response){
+      this.$http.get(api.style).then(function(response){
         this.tableData=response.data.tableData;
       });
     },
@@ -368,7 +368,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css">>
   .account{
     padding: 20px;
   }

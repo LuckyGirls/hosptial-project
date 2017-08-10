@@ -1,11 +1,5 @@
 <template>
 	<div class="personal">
-		<div class="breadcrumbBar">
-			<span class="text">当前位置：</span>
-			<el-breadcrumb separator="/" class="navBar">
-			  	<el-breadcrumb-item :to="{ path: '/home/personal' }">个人信息</el-breadcrumb-item>
-			</el-breadcrumb>
-		</div>
 		<div class="personal-content">
 			<div class="content-left">
 				<i class="Img">
@@ -287,6 +281,7 @@
 </style>
 <script>
 	import store from '../../store';
+	import {api} from '../../global/api';
 	export default { 
 		data() {
 			// 校验输入的电话号码
@@ -381,7 +376,7 @@
 			}
 		},
 		mounted:function(){
-			this.$http.get('../../../static/personal.json').then(function(response){
+			this.$http.get(api.personal).then(function(response){
 				// console.log("response的值",response);
 				this.personal=response.data.data.personal;
 				this.personal2=response.data.data.personal2;

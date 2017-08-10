@@ -11,8 +11,8 @@
 			</div>
 		</form>
 		<div class="inOne-TabBttom">
-          <el-button type="primary" @click="saveData()"><i class="fa fa-floppy-o"></i>保存</el-button>
-          <el-button type="primary" @click="resetData()"><i class="fa fa-pencil" aria-hidden="true"></i>重置</el-button>
+          <h2 @click="saveData()"><i class="fa fa-floppy-o"></i>保存</h2>
+          <h2 @click="resetData()"><i class="fa fa-pencil" aria-hidden="true"></i>重置</h2>
         </div>
 	</div>
 </template>
@@ -107,8 +107,7 @@
 	    margin-left: 20px;
   	}
   	.inOne-TabBttom{
-  		/*margin-left: 0 !important;*/
-  		text-align: center;
+  		margin-left: 0 !important;
   	}
   	.inOne-TabBttom h2{
   		color: blue;

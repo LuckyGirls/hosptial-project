@@ -5,10 +5,10 @@
 
   		    <!-- 头部四个按钮 -->
 	  		<div class="btns">
-	  			<el-button type="success" @click="dialogFormVisible = true" >新增排班</el-button>
-	  			<el-button type="success" @click="add_catchUp">加诊排班</el-button>
+	  			<el-button class="btn_add btn_foot" @click="dialogFormVisible = true" >新增排班</el-button>
+	  			<el-button class="btn_add btn_foot" @click="add_catchUp">加诊排班</el-button>
 	  			<el-button class="btn_edit btn_foot" @click="edit">编辑排班</el-button>
-	  			<el-button type="danger" @click="delete_work_content()">删除排班</el-button>
+	  			<el-button class="btn_delete btn_foot" @click="delete_work_content()">删除排班</el-button>
 	  		</div>
 				
 
