@@ -123,7 +123,7 @@
    </div>
 </template>
 <script >
-
+import {api} from '../../global/api';
 export default {
   name: 'package',
   data () {
@@ -149,44 +149,27 @@ export default {
         },
       tableData: [{
                  
-                 style: '检查费',
-                 name: '头疼',
+                 style: '',
+                 name: '',
                  relate:'',
-                 price:'1,200',
-                 department:'治疗室',
-                 usestate:'true',
-               }, {
-                 
-                 style: '检查费',
-                 name: '头疼',
-                 relate:'',
-                 price:'200',
-                 department:'治疗室',
-                 usestate:'true',
-               }, {
-                
-                style: '检查费',
-                name: 'B超',
-                relate:'',
-                price:'1,200',
-                department:'治疗室',
-                usestate:'true',
-               }, {
-               
-               style: '检查费',
-               name: 'B超',
-               relate:'',
-               price:'1,200',
-               department:'治疗室',
-               usestate:'true',
+                 price:'',
+                 department:'',
+                 usestate:'',
                }]
     }
   },
+  //实例化就获取数据
+  mounted:function(){
+    this.$http.get(api.package).then(function(response){
+     this.tableData=response.data.tableData;
+    });
+  },
   methods: {
      onSubmit() {
-       this.$message('模拟数据，这个方法并不管用哦~');
-     },
-
+                  this.$http.get(api.package_search,{params:this.formInline}).then(function(response){
+                 this.tableData=response.data.tableData;
+               });
+      },
      handleEdit (index, row) {
        this.dialogFormVisible = true;
        this.form = Object.assign({}, row);

@@ -246,7 +246,7 @@ export default {
     },
     methods: {
         onSubmit() {
-         this.$http.get('../../../static/style_search.json',{params:this.formInline}).then(function(response){
+         this.$http.get(api.style_search,{params:this.formInline}).then(function(response){
         this.tableData=response.data.tableData;
       });
         },

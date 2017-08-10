@@ -21,7 +21,7 @@
       </el-select>
     </el-form-item>
     <el-form-item>
-      <el-button type="success" class="el-icon-search"@click="onSubmit_search"></el-button>
+      <el-button type="success" class="el-icon-search"@click="onSubmit"></el-button>
     </el-form-item>
     <el-button class="filter-item" type="primary" @click="handleCreate()"  icon="edit">添加</el-button>   
   </el-form>
@@ -123,7 +123,7 @@
    </div>
 </template>
 <script >
-
+import {api} from '../../global/api';
 export default {
   name: 'smallproject',
   data () {
@@ -149,44 +149,26 @@ export default {
         },
       tableData: [{
                  
-                 style: '检查费',
-                 name: 'B超',
+                 style: '',
+                 name: '',
                  company:'',
-                 price:'1,200',
-                 department:'治疗室',
-                 usestate:'true',
-               }, {
-                 
-                 style: '治疗费',
-                 name: '头疼',
-                 company:'',
-                 price:'200',
-                 department:'治疗室',
-                 usestate:'true',
-               }, {
-                
-                style: '检查费',
-                name: 'B超',
-                company:'',
-                price:'1,200',
-                department:'治疗室',
-                usestate:'true',
-               }, {
-               
-               style: '检查费',
-               name: 'B超',
-               company:'',
-               price:'1,200',
-               department:'治疗室',
-               usestate:'true',
+                 price:'',
+                 department:'',
+                 usestate:'',
                }]
     }
-  },
+  }, //实例化就获取数据
+    mounted:function(){
+      this.$http.get(api.smallproject).then(function(response){
+        this.tableData=response.data.tableData;
+      });
+    },
   methods: {
      onSubmit() {
-       this.$message('模拟数据，这个方法并不管用哦~');
+             this.$http.get(api.smallproject_search,{params:this.formInline}).then(function(response){
+            this.tableData=response.data.tableData;
+          });
      },
-
      handleEdit (index, row) {
        this.dialogFormVisible = true;
        this.form = Object.assign({}, row);

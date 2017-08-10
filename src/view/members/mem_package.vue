@@ -6,15 +6,15 @@
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
 
       <el-form-item label="会员姓名">
-        <el-input  placeholder="请输入姓名"></el-input>
+        <el-input v-model="formInline.username" placeholder="请输入姓名"></el-input>
       </el-form-item>
 
       <el-form-item label="套餐名称">
-        <el-input  placeholder="请输入名称"></el-input>
+        <el-input v-model="formInline.buy_package" placeholder="请输入名称"></el-input>
       </el-form-item>
 
       <el-form-item label="剩余有效天数：小于">
-        <el-input  ></el-input>
+        <el-input v-model="formInline.avaliable_date" ></el-input>
       </el-form-item>
 
       <el-form-item >
@@ -154,7 +154,9 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$message('模拟数据，这个方法并不管用哦~');
+        this.$http.get(api.style_search,{params:this.formInline}).then(function(response){
+        this.tableData=response.data.tableData;
+     });
     },
     //点击添加套餐
     add_package (index, row) {

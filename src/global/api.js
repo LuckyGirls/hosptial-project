@@ -10,6 +10,11 @@ export const api={
 	'personal':url.staticPath+'dataJson/personal.json',
 	'inquiryData':url.staticPath+'dataJson/inquiryData.json',
 	'style':url.staticPath+'dataJson/style.json',
+	'style_search':url.staticPath+'dataJson/style_search.json',
+	'smallproject':url.staticPath+'dataJson/smallproject.json',
+	'smallproject_search':url.staticPath+'dataJson/smallproject_search.json',
+	'package':url.staticPath+'dataJson/package.json',
+	'package_search':url.staticPath+'dataJson/package_search.json',
 	'testData':url.staticPath+'dataJson/testData.json'
 }
 // export default api;
