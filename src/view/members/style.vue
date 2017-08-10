@@ -194,22 +194,25 @@ export default {
         cancelButtonText: '取消',
         cancelButtonClass: 'cancel',
       }).then(() => {
-       this.tableData.push(this.form);
+        let vm=this.form;
+        this.form={ 
+          account_type:'',
+          username:'',
+          date:'',
+          avaliable_date:'',
+          account:'',
+          style:'',
+          edit_date:'',
+        }
+       this.tableData.push(vm);
+       
        this.$message({
           message: "操作成功！",
           type: 'success'
        });
        this.dialogFormVisible = false;
        //重置          
-       this.form={ 
-         account_type:'',
-         username:'',
-         date:'',
-         avaliable_date:'',
-         account:'',
-         style:'',
-         edit_date:'',
-       }
+       
       });
     },
     //点击修改确定
@@ -230,6 +233,15 @@ export default {
       this.editLoading = false;
       this.dialogFormVisible_change = false;
      });
+      this.form={ 
+        account_type:'',
+        username:'',
+        avaliable_date:'',
+        account:'',
+        style:'',
+      }
+       console.log(this.form);
+      
     },
     handleSizeChange(val) {
      console.log(`每页 ${val} 条`);
