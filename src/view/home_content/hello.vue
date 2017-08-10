@@ -42,10 +42,6 @@
   </div>
 </template>
 <style type="text/css" scoped>
-    .smallhome{
-      width: 100%;
-      height: 100%;
-    }
     .smallhome .todayReservation{
       margin-left:15px;
       text-align: center;
@@ -105,6 +101,7 @@
       margin-left: 15px;
       background: #fff;
       width: 49.9%;
+      overflow: hidden;
       border: 1px solid #dfe6ec;
       position: relative;
       top: 15px;
@@ -114,7 +111,7 @@
       font-size: 14px;
       font-weight: bold;
       color:#1f2d3d;
-      width: 97.7%;
+      width: 100%;
       line-height: 40px;
       background-color: #eef1f6;
       padding-left: 15px;

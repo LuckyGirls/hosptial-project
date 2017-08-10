@@ -70,11 +70,13 @@
 	}
 	/*头顶的导航*/
 	.sideBar .topbar{
+		clear: both;
 		padding: 0;
 		margin-top: 0;
 		margin-left: 200px;
 	}
 	.sideBar .breadcrumb1{
+		clear: both;
 		padding: 15px;
 		margin-left: 200px;
 		font-size: 18px;

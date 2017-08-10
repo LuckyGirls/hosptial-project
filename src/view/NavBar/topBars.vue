@@ -1,6 +1,7 @@
 <template>
 	<div class="top">
 		<!-- <el-row> -->
+		<div>
 			<!-- <el-button class="barsBtn">
 				<i class="fa fa-bars" aria-hidden="true"></i>
 			</el-button> -->
@@ -34,6 +35,7 @@
 					</router-link>
 				</li>
 			</ul>
+			</div>
 		<!-- </el-row> -->
 	</div>
 </template>
@@ -55,18 +57,15 @@
 	.top .font-time{
 		margin-left: 15px;
 		float: left;
-		/*display: inline;*/
-		/*width: 20%;*/
 	}
 	.top .font-time,.top .dropdown,.top .menu2 li{
 		color: #666;
 		font-size: 14px;
 	}
 	.top .menu2{
-		/*display: inline;*/
-		text-align: center;
-		/*float: right;*/
-		/*width: 30%;*/
+		text-align: center;		
+		float: right;
+		margin-right:60px; 
 	}
 	.top .menu2 li{
 		display: inline-block;
