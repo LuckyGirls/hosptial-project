@@ -252,12 +252,16 @@ export default {
         },
        //账户充值
         accountPay (index, row) {
+         this.form= {
+             money:'',
+             type:'',
+           };
         let money=this.tableData[index].money;
         if(money===null){
          this.dialogFormVisible_moneypay = true;
         }
         else{
-         this.paymoney=null;
+         
          this.dialogFormVisible_moneypayagain = true;
         }
          this.form = Object.assign({}, row);
@@ -303,16 +307,18 @@ export default {
            cancelButtonClass: 'cancel'
          }).then(() => {
           if(this.paymoney){
-            this.form.money=parseInt(this.paymoney)+this.form.money;
+            this.form.money=parseInt(this.paymoney)+parseInt(this.form.money);
           }
           this.tableData[this.table_index] = this.form;
-          this.tableData.splice(this.table_index, 1, this.form);
+          this.tableData.splice(this.table_index, 1, this.form);//??
+         
           this.$message({
              message: "操作成功！",
              type: 'success'
            });
            this.editLoading = false;
            this.dialogFormVisible_moneypayagain = false;
+
           })
         },
         //点击类型更改确定
