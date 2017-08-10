@@ -16,6 +16,9 @@
 			        <el-input name="password" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password" placeholder="密码" class="input-content"></el-input>
 			    </el-form-item>
 			    <el-form-item>
+			    	测试账号：1111/vuex  密码：123456
+			    </el-form-item>
+			    <el-form-item>
 			        <el-button type="primary" @click="handleLogin">
 			            登录
 			        </el-button>
@@ -32,7 +35,7 @@
 	.login .login-container{
 		position: relative;
 		width: 500px;
-		height: 300px;
+		height: 350px;
 		margin: 15% auto;
 		background: #fff;
 		text-align: center;
