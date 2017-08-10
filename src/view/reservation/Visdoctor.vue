@@ -52,6 +52,7 @@
 </template>
 <script>	
    import "../../assets/css/style1.css"
+   import {api} from '../../global/api';
 	//npm i element-ui -S 等同于
 	//npm install element-ui --save
 	export default {
@@ -74,7 +75,7 @@
 	  	getData:function(){
 	  		// 这里可以写ajax方法
 	  		     let me = this;			
-					this.$http.get('../../../static/testData.json').then(function(response){
+					this.$http.get(api.testData).then(function(response){
 						// alert(0)
 						console.log(response)												
 						console.log("这是我们需要的json数据",response.data)

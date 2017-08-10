@@ -133,6 +133,7 @@
  <script>
     import echarts from 'echarts';
     import store from '../../store';
+    import {api} from '../../global/api';
     export default {
       data() {
         return {
@@ -142,7 +143,7 @@
         }
       },
       mounted:function(){
-        this.$http.get('../../../static/testData.json').then(function(response){
+        this.$http.get(api.testData).then(function(response){
           console.log("首页的值response",response.data);
           this.tableData=response.data;
         });
