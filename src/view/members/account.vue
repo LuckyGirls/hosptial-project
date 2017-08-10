@@ -252,10 +252,7 @@ export default {
         },
        //账户充值
         accountPay (index, row) {
-         this.form= {
-             money:'',
-             type:'',
-           };
+
         let money=this.tableData[index].money;
         if(money===null){
          this.dialogFormVisible_moneypay = true;
@@ -311,7 +308,8 @@ export default {
           }
           this.tableData[this.table_index] = this.form;
           this.tableData.splice(this.table_index, 1, this.form);//??
-         
+          this.paymoney='';
+          this.value='';
           this.$message({
              message: "操作成功！",
              type: 'success'
