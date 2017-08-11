@@ -28,15 +28,15 @@
       <el-form ref="form" :model="form" label-width="120px">
 
         <el-form-item label="会员账号类型：">
-          <el-input v-model="form.account_type"  ></el-input>
+          <el-input v-model="form1.account_type"  ></el-input>
         </el-form-item>
 
         <el-form-item label="默认有效期：">
-          <el-input v-model="form.avaliable_date"  ></el-input>
+          <el-input v-model="form1.avaliable_date"  ></el-input>
         </el-form-item>
 
         <el-form-item label="创建人：">
-          <el-input v-model="form.username"  ></el-input>
+          <el-input v-model="form1.username"  ></el-input>
         </el-form-item>
 
         <el-form-item class="center">
@@ -127,6 +127,15 @@ export default {
         style:'',
         edit_date:'',
       },
+      form1: {
+        account_type:'',
+        username:'',
+        date:'',
+        avaliable_date:'',
+        account:'',
+        style:'',
+        edit_date:'',
+      },
     }
   },
   //实例化就获取数据
@@ -178,8 +187,8 @@ export default {
     //点击添加账户出现弹框
     add_account_style () {
        this.dialogFormVisible = true; 
-       this.form.date=this.CurentTime();//获取当前时间
-       this.form.edit_date=this.CurentTime();
+       this.form1.date=this.CurentTime();//获取当前时间
+       this.form1.edit_date=this.CurentTime();
     },
     //点击修改出现弹框
     add_account_change (index,row) {
@@ -194,14 +203,10 @@ export default {
         cancelButtonText: '取消',
         cancelButtonClass: 'cancel',
       }).then(() => {
-       this.tableData.push(this.form);
-       this.$message({
-          message: "操作成功！",
-          type: 'success'
-       });
-       this.dialogFormVisible = false;
-       //重置          
-       this.form={ 
+        let vm=this.form1;
+       
+       this.tableData.push(vm);
+       this.form1={ 
          account_type:'',
          username:'',
          date:'',
@@ -210,6 +215,13 @@ export default {
          style:'',
          edit_date:'',
        }
+       this.$message({
+          message: "操作成功！",
+          type: 'success'
+       });
+       this.dialogFormVisible = false;
+       //重置          
+       
       });
     },
     //点击修改确定
@@ -221,6 +233,7 @@ export default {
      }).then(() => {
       this.editLoading = true;//显示正在修改，圆圈跑起来
       this.form.edit_date=this.CurentTime();
+    
       this.tableData[this.table_index] = this.form;
       this.tableData.splice(this.table_index, 1, this.form);
       this.$message({
@@ -230,6 +243,8 @@ export default {
       this.editLoading = false;
       this.dialogFormVisible_change = false;
      });
+      console.log(this.form);
+      
     },
     handleSizeChange(val) {
      console.log(`每页 ${val} 条`);

@@ -196,12 +196,6 @@
 	</div>
 </template>
 <style scoped>
-	.personal .breadcrumbBar{
-		line-height: 50px;
-		margin-left: 15px;
-		font-size: 15px;
-		color: #AEAEAE;
-	}
 	.personal .navBar{
 		display: inline-block;	
 		color: #f1f1f1;

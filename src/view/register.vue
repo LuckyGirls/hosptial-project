@@ -94,7 +94,7 @@
   }
 </style>
 <script>
-	
+	import {api} from '../global/api';
   export default {
     data() {
     	var validateName = (rule, value, callback) => {
@@ -141,21 +141,26 @@
     	        callback(new Error('请输入用户名'));
     	  }
         else{
-          this.$http.get('../../static/login.json').then(function(response){
-             var flag=0;
-             for(let i=0;i<response.data.length;i++){
-               if(value === response.data[i].username){
-                 flag=1;
-                 break;
-               }
-             }
-             if(flag ===1){
-               callback(new Error("用户名已存在"));
-             }
-          });
+          callback();
         }
+        // else{
+        //   console.log("xxxxxxxxxxxxx",api.login)
+        //   this.$http.get(api.login).then(function(response){
+        //      var flag=0;
+        //      for(let i=0;i<response.data.length;i++){
+        //        if(value === response.data[i].username){
+        //          flag=1;
+        //          break;
+        //        }
+        //      }
+        //      if(flag ===1){
+        //        callback(new Error("用户名已存在"));
+        //      }
+        //   });
+        // }
     	    
-    	}
+    	};
+      
     	var validatePass = (rule, value, callback) => {
     	    if (value === '') {
     	        callback(new Error('请输入密码'));
@@ -163,22 +168,23 @@
           else if(value.length<6){
               callback(new Error('密码不能少于6位'));
           }
-    	    else if(this.ruleForm.dbpassword !== '') {
+    	    else {
+            if(this.ruleForm.dbpassword !== '') {
     	        this.$refs.ruleForm.validateField('dbpassword');
-    	    }
-          else{
+            }
             callback();
-          }
+    	    }
+  
     	};
     	var validatedbPass = (rule, value, callback) => {
-    	        if (value === '') {
-    	          callback(new Error('请再次输入密码'));
-    	        } else if (value !== this.ruleForm.pass) {
-    	          callback(new Error('两次输入密码不一致!'));
-    	        } else {
-    	          callback();
-    	        }
-    	      };
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.ruleForm.password) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
      	 return {
 	        ruleForm: {
 	          name: '',

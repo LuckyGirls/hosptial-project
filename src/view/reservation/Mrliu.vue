@@ -11,10 +11,10 @@
 					  </el-form-item>
 				</el-form>
 			    <el-menu default-active="1" class="el-menu-vertical-demo" style="background-color: #ffffff;" >
-				    <router-link to="/home/reservation/Mrliu/Visdoctor">
+				    <router-link to="/home/reservation/Mrliu/Visdoctor" style="text-decoration:none;color:#48576a;">
 				      	<el-menu-item index="1">出诊医生</el-menu-item>
 				    </router-link>    
-				    <router-link to="/home/reservation/Mrliu/liuContent">
+				    <router-link to="/home/reservation/Mrliu/liuContent" style="text-decoration:none;color:#48576a;">
 				    	<el-menu-item index="2">刘医生</el-menu-item>
 				    </router-link> 
 				      <el-menu-item index="3">李医生</el-menu-item>

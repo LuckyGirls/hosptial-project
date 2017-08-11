@@ -5,7 +5,7 @@
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
 
     <el-form-item label="会员姓名">
-      <el-input  placeholder="请输入姓名"></el-input>
+      <el-input  v-model="formInline.username" placeholder="请输入姓名"></el-input>
     </el-form-item>
     <el-button type="success" class="el-icon-search"@click="onSubmit"></el-button>
     
@@ -105,7 +105,9 @@ export default {
   },
   methods: {
      onSubmit() {
-       this.$message('模拟数据，这个方法并不管用哦~');
+              this.$http.get(api.style_search,{params:this.formInline}).then(function(response){
+             this.tableData=response.data.tableData;
+           });
      },
      //点击兑换登记--执行
      cash_register (index, row) {

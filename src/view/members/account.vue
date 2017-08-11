@@ -246,16 +246,19 @@ export default {
     },
     methods: {
         onSubmit() {
-         this.$message('模拟数据，这个方法并不管用哦~');
+         this.$http.get(api.style_search,{params:this.formInline}).then(function(response){
+        this.tableData=response.data.tableData;
+      });
         },
        //账户充值
         accountPay (index, row) {
+
         let money=this.tableData[index].money;
         if(money===null){
          this.dialogFormVisible_moneypay = true;
         }
         else{
-         this.paymoney=null;
+         
          this.dialogFormVisible_moneypayagain = true;
         }
          this.form = Object.assign({}, row);
@@ -301,16 +304,19 @@ export default {
            cancelButtonClass: 'cancel'
          }).then(() => {
           if(this.paymoney){
-            this.form.money=parseInt(this.paymoney)+this.form.money;
+            this.form.money=parseInt(this.paymoney)+parseInt(this.form.money);
           }
           this.tableData[this.table_index] = this.form;
-          this.tableData.splice(this.table_index, 1, this.form);
+          this.tableData.splice(this.table_index, 1, this.form);//??
+          this.paymoney='';
+          this.value='';
           this.$message({
              message: "操作成功！",
              type: 'success'
            });
            this.editLoading = false;
            this.dialogFormVisible_moneypayagain = false;
+
           })
         },
         //点击类型更改确定
